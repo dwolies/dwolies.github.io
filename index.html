@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>your lies are important to us</title>
+  <style>
+    body { font-family: sans-serif;  margin: 5vmin; }
+    div#liar { padding: 5vmin 0 5vmin 0;}
+    div#lie span:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div id="lie">Loading</div>
+  <div id="liar"></div>
+  <div id="sub"></div>
+
+  <script type="module">
+    import { BrotliDecode } from './decode.min.js'
+    let sIndex = new Map()
+    let subsData,liesData,liarData /// mmmm, globals.
+
+    async function brGet(url) {
+        const response = await fetch(url)
+        const compressedData = await response.arrayBuffer()
+        return new TextDecoder().decode(BrotliDecode(new Uint8Array(compressedData))).split('\0');   
+    }
+
+    function upsell(text) {
+        const offerings = sIndex.get(soundex(text))
+        if(offerings) {
+            selectLieIndex(offerings[randomFrom(offerings)])
+        }
+    }
+
+    function soundex(word) {
+        const firstLetter = word[0].toUpperCase()
+        const soundexMapping = {
+            B: 1, F: 1, P: 1, V: 1,
+            C: 2, G: 2, J: 2, K: 2, Q: 2, S: 2, X: 2, Z: 2,
+            D: 3, T: 3,
+            L: 4,
+            M: 5, N: 5,
+            R: 6
+        }
+        const chars = word.toUpperCase().split('').slice(1).map(char => {
+            if (soundexMapping[char]) {
+                return soundexMapping[char];
+            } else {
+                return ''
+            }
+        })
+
+        const filteredChars = chars.filter((char, index) => char !== chars[index - 1])
+
+        return (firstLetter + filteredChars.join('')).padEnd(4, '0').slice(0, 4)
+    }
+
+    function index() {
+        for(const lieIndex in liesData) {
+            const words = liesData[lieIndex].match(/\b\w+\b/g) || []
+            for(const sToken of words.map(word => soundex(word))) {
+                if(!sIndex.get(sToken)) {
+                    sIndex.set(sToken, [lieIndex])            
+                } else {
+                    sIndex.get(sToken).push(lieIndex)
+                }
+            }
+        }
+    }
+
+    function decorate(text) {
+        const fragment = document.createDocumentFragment();
+        let delimiter = ''
+        // TODO: split more carefully and restore the ^\s as a fragment
+        text.split(/\s+/).forEach((word, index) => {
+            const span = document.createElement('span')
+            span.textContent = delimiter + word
+            fragment.appendChild(span)
+            delimiter = ' '
+        })
+        return fragment
+    }
+
+    function selectLieIndex(lindex) {
+        document.getElementById('sub').textContent = subsData[lindex]
+        document.getElementById('liar').textContent = liarData[lindex]
+        document.getElementById('lie').replaceChildren(decorate(liesData[lindex]))
+    }
+
+    function randomFrom(anArray) {
+        return Math.floor(Math.random() * anArray.length)
+    }
+
+    async function init() {
+        [subsData,liesData,liarData] = await Promise.all([
+            brGet('subs.br'),
+            brGet('lies.br'),
+            brGet('liars.br'),
+        ])
+        selectLieIndex(randomFrom(liesData))        
+        document.getElementById('lie').addEventListener('click', (event) => upsell(event.target.innerText.trim()))
+        index() // TODO: only hook up interaction once this is done
+    }
+
+    init().catch(error => {
+      console.error('Fail.', error);
+    });
+  </script>
+</body>
+</html>
