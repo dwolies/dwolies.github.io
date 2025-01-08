@@ -299,6 +299,6 @@ function select(page) {
     swap('contentP', pages[page]())  
 }
 
-window.onload = async () => { await commonInit(); select('lotd') }
+window.onload = async () => { await commonInit() }
 
 
