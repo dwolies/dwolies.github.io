@@ -11,15 +11,20 @@ async function brGet(url) {
     return new TextDecoder().decode(BrotliDecode(new Uint8Array(compressedData))).split('\0');   
 }
 
+function enclickify() {
+    document.querySelectorAll('h2').forEach(n => n.addEventListener('click', (event) => upsell(event.target.innerText.trim())) )
+}
+
 function upsell(text) {
     const offerings = sIndex.get(soundex(text))
     if(offerings) {
-        selectLieIndex(offerings[randomFrom(offerings)])
+        const lie = getLieByIndex(offerings[randomFrom(offerings)])            
+        swap('contentP', lBody(lie.body) + h6(lie.liar) + h6(lie.submittedOn))
+        enclickify()
     }
 }
 
 function soundex(word) {
-    const firstLetter = word[0].toUpperCase()
     const soundexMapping = {
         B: 1, F: 1, P: 1, V: 1,
         C: 2, G: 2, J: 2, K: 2, Q: 2, S: 2, X: 2, Z: 2,
@@ -38,13 +43,12 @@ function soundex(word) {
 
     const filteredChars = chars.filter((char, index) => char !== chars[index - 1])
 
-    return (firstLetter + filteredChars.join('')).padEnd(4, '0').slice(0, 4)
+    return (word[0].toUpperCase() + filteredChars.join('')).padEnd(4, '0').slice(0, 4)
 }
 
 function index() {
     for(const lieIndex in liesData) {
-        const words = liesData[lieIndex].match(/\b\w+\b/g) || []
-        for(const sToken of words.map(word => soundex(word))) {
+        for(const sToken of (liesData[lieIndex].match(/\b\w+\b/g) || []).map(word => soundex(word))) {
             if(!sIndex.get(sToken)) {
                 sIndex.set(sToken, [lieIndex])            
             } else {
@@ -55,16 +59,12 @@ function index() {
 }
 
 function decorate(text) {
-    const fragment = document.createDocumentFragment();
-    let delimiter = ''
+    const parts = []
     // TODO: split more carefully and restore the ^\s as a fragment
-    text.split(/\s+/).forEach((word, index) => {
-        const span = document.createElement('span')
-        span.textContent = delimiter + word
-        fragment.appendChild(span)
-        delimiter = ' '
+    text.split(/\s+/).forEach((word, _) => {
+        parts.push(`<span>${word}</span>`)
     })
-    return fragment
+    return parts.join(' ')
 }
 
 function formatDate(date) {
@@ -89,7 +89,7 @@ function formatDate(date) {
 
 const dateToLindex = (date) => {
     const N = liesData.length
-    const daysSinceEpoch = Math.floor((date - new Date(0)) / (1000 * 60 * 60 * 24));
+    const daysSinceEpoch = Math.floor((date - new Date(0)) / 86400000);
     return ((daysSinceEpoch * 2654435761) % 2**32) % (N + 1);  // hash it right up
   }
 
@@ -143,7 +143,7 @@ async function commonInit() {
 }
 
 function h4(text) { return `<h4>${text}</h4>`}
-function h2(text) { return `<h2 style="text-align:left;">${text}</h2>`}
+function lBody(text) { return `<h2 style="text-align:left;">${decorate(text)}</h2>`}
 function h6(text) { return `<h6 style="text-align:left;">${text}</h6>`}
 
 const pages = {
@@ -152,7 +152,7 @@ const pages = {
     lotd : function() {
         const today = new Date()
         const lie = getLieByIndex(dateToLindex(today))            
-        return h4('The lie of today, ' + formatDate(today)) + lbreak() + h2(lie.body) + h6(lie.liar) + h6(lie.submittedOn)
+        return h4('The lie of today, ' + formatDate(today)) + lbreak() + lBody(lie.body) + h6(lie.liar) + h6(lie.submittedOn)
     },
 
     awol : function() {
@@ -162,7 +162,7 @@ const pages = {
             currentDate.setDate(currentDate.getDate() - history)
             const lie = getLieByIndex(dateToLindex(currentDate))       
             bits.push(history > 1 ? lbreak() : '')
-            bits.push(h4('The lie of last ' + formatDate(currentDate)), lbreak(), h2(lie.body), h6(lie.liar), h6(lie.submittedOn))
+            bits.push(h4('The lie of last ' + formatDate(currentDate)), lbreak(), lBody(lie.body), h6(lie.liar), h6(lie.submittedOn))
         } 
         return bits.join('')
     },
@@ -250,28 +250,27 @@ HREF="/hancockd-bin/elsie2?l+z">Z</A></td></tr> </table><P>
 
     cl : function() {
         return `
-<H3>Our Esteemed Celebrity Liar</H3><H1><A
-HREF="http://www.gbnet.net:80/~stephenf/index.html">Sir Stephen
-Fry</A></H1>
+<H3>Our Esteemed Celebrity Liar</H3>
+<H1><A HREF="http://www.gbnet.net:80/~stephenf/index.html">Sir Stephen Fry</A></H1>
 ${rbreak()}
-<H2 style="text-align:left"> 
-<P><EM>Journalism is an honourable
-profession, attracting some of the most talented and thoughtful minds
-in the world.  Its aim is to inform, elucidate and uplift the human
-spirit.</EM><P>
-
-<P>Welshmen are allergic to pajamas.</P>
-
-<P><EM>The ingestion of many milligrams of vitamin C will prevent you from
-getting a cold.</EM></P>
-
-<P>William Shakespeare's middle name was Colin.</P>
-
-<P><EM>The internet is American.</EM></P>
-
-<P>Belgian males remove their trousers while driving.</P>
-</H2>
-
+<EM>
+${lBody('Journalism is an honourable profession, attracting some of the most talented and thoughtful minds in the world. Its aim is to inform, elucidate and uplift the human spirit.')}
+</EM>
+<BR/>
+${lBody('Welshmen are allergic to pajamas.')}
+<BR/>
+<EM>
+${lBody('The ingestion of many milligrams of vitamin C will prevent you fromgetting a cold.')}
+</EM>
+<BR/>
+${lBody('William Shakespeare\'s middle name was Colin.')}
+<BR/>
+<EM>
+${lBody('The internet is American.')}
+</EM>
+<BR/>
+${lBody('Belgian males remove their trousers while driving.')}
+<BR/>
 <h6 style="text-align:left">Submitted: Monday, 21 Aug 1995</h6>`   
     },
 
@@ -296,7 +295,8 @@ getting a cold.</EM></P>
 
 function select(page) {
     setHeader(page)
-    swap('contentP', pages[page]())  
+    swap('contentP', pages[page]()) 
+    enclickify()
 }
 
 window.onload = async () => { await commonInit() }
