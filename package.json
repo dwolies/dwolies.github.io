@@ -1,14 +1,15 @@
-
 {
   "name": "dwolbot",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  
   "scripts": {
     "build": "node builder.js"
   },
   "keywords": [],
   "author": "",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  }
 }
