@@ -1,0 +1,14 @@
+
+{
+  "name": "dwolbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  
+  "scripts": {
+    "build": "node builder.js"
+  },
+  "keywords": [],
+  "author": "",
+  "type": "module"
+}
