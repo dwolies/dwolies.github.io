@@ -1,6 +1,7 @@
 
-import yaml from 'js-yaml';
-import fs from 'fs';
+import yaml from 'js-yaml'
+import fs from 'fs'
+import zlib from 'zlib'
 
 import path from 'path';
 import {guests} from './guests.js'
@@ -8,10 +9,7 @@ import {guests} from './guests.js'
 const outputRoot = './root'
 const wordRegex = /[\p{L}\p{N}\p{Mn}\p{Pc}\u2019]+/gu;
 
-
  function formatDate(offset) {
-
-    
     if(offset == 1 ) {
         return 'Yesterday'
     }
@@ -86,11 +84,12 @@ function makeHeader(page) {
 
     return `<HTML><HEAD><TITLE>Dave's Web of Lies</TITLE><META name="description" content="Dave's Web of Lies">
 <META name="keywords" content="daves,web,of,lies,untruths,fibs,porkies,liar,liar,pants,on,fire,damned,lies,statistics">
-<LINK rel="stylesheet" href="dwol.css"></HEAD><BODY><TABLE ID="hdr" CELLPADDING="0" CELLSPACING="0" BORDER=0 ALIGN=CENTER><TR>
+<LINK rel="stylesheet" href="dwol.css"><script type="module" src="dwol.js"></script></HEAD>
+<BODY><TABLE ID="hdr" CELLPADDING="0" CELLSPACING="0" BORDER=0 ALIGN=CENTER><TR>
 <TD><A ID="dwol" HREF="dwol.htm"><IMG SRC="${img(page,'dwol')}" WIDTH=124 HEIGHT=48 BORDER=0 ALT="Daves's Web of Lies"></A></TD>
 <TD><A ID="lotd" HREF="lotd.htm"><IMG SRC="${img(page,'lotd')}" WIDTH=79 HEIGHT=48 BORDER=0 ALT="Lie of the Day"></A></TD>
 <TD><A ID="awol" HREF="awol.htm"><IMG SRC="${img(page,'awol')}" WIDTH=77 HEIGHT=48 BORDER=0 ALT="A Week of Lies"></A></TD>
-<TD><A ID="dol" HREF="#"><IMG SRC="${img(page,'dol')}" WIDTH=87 HEIGHT=48 BORDER=0 ALT="Database of Lies"></A></TD>
+<TD><A ID="dol" HREF="dol.htm"><IMG SRC="${img(page,'dol')}" WIDTH=87 HEIGHT=48 BORDER=0 ALT="Database of Lies"></A></TD>
 <TD><A ID="cl" HREF="cl.htm"><IMG SRC="${img(page,'cl')}" WIDTH=80 HEIGHT=48 BORDER=0 ALT="Celebrity Liar"></A></TD>
 <TD><A ID="gl" HREF="gl0.htm"><IMG SRC="${img(page,'gl')}" WIDTH=63 HEIGHT=48 BORDER=0 ALT="Guest Liar"></A></TD>
 <TD><A ID="sal" HREF="#"><IMG SRC="sal0.gif" WIDTH=90 HEIGHT=48 BORDER=0 ALT="Submit a Lie"></A></TD>
@@ -142,15 +141,36 @@ function constructIndex(lies) {
     for (let aLie of lies) {
         tokenizeAndSoundex(aLie.lie).forEach(token => {
             if (token.isWord) {
-                const currentList = lookup.get(token.soundex) || []
-                currentList.push(aLie.id)
-                lookup.set(token.soundex, currentList)
+                const currentList = lookup.get(token.soundex)
+                if(currentList) {
+                    currentList.push(aLie.id)
+                } else {                
+                    lookup.set(token.soundex, [aLie.id])
+                }
             }
         })
     }
 
     return lookup
 }
+
+function compressAndExportIndex(lookup, fileName) {
+    const brotliOptions = {
+            params: {
+            [zlib.constants.BROTLI_PARAM_MODE]: zlib.constants.BROTLI_MODE_TEXT,
+            [zlib.constants.BROTLI_PARAM_QUALITY]: 11, // Maximum compression quality
+            [zlib.constants.BROTLI_PARAM_LGWIN]: 22,   // Maximum sliding window size
+            },
+        };
+        
+    const text = JSON.stringify(Array.from(lookup.entries()))
+    const compressed = zlib.brotliCompressSync(text, brotliOptions)
+    fs.writeFileSync(Buffer.from(fileName),compressed)    
+
+    console.log(`${fileName}: raw=${text.length} bytes, brotli=${compressed.length} bytes => ${(compressed.length*100/text.length).toFixed(1)}%`)
+}
+
+
 
 function toDate(seconds) {
     if(seconds === null || seconds === 0) {
@@ -210,8 +230,7 @@ function vpad() {
     return `<div class=mpad/>&nbsp;</div>`
 }
 
-function dateLabel(text, offset) 
-{ 
+function dateLabel(text, offset) { 
     return `<div class=lotddate>${text}${formatDate(offset)}</div>`
 }
 
@@ -358,10 +377,12 @@ try {
 
     removeEverything()
 
+    compressAndExportIndex(soundexToLieIndices, `${outputRoot}/index.br`)
+
     for (let i = 0; i < thinned.length; i++) {
         fs.writeFileSync(`${outputRoot}/${thinned[i].id}.htm`, makeHeader('?') + annotateLie(thinned[i], soundexToLieIndices, soundexToCounter) + footer)
     }
-    console.log(thinned.length + ' written to ' + outputRoot)
+    console.log(thinned.length + ' pages written to ' + outputRoot)
     
     makeAwol(thinned, soundexToLieIndices, soundexToCounter)
 
