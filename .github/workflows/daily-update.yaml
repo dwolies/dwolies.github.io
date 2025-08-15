@@ -2,20 +2,26 @@ name: Daily Build (PR + Auto-merge)
 
 on:
   schedule:
-    - cron: "0 3 * * *"   # daily at 03:00 UTC
+    - cron: "0 3 * * *"   # daily at 03:00 UTC (change to "0 * * * *" for hourly)
   workflow_dispatch:
 
 permissions:
-  contents: write          # push branch
-  pull-requests: write     # open/update PR
+  contents: write
+  pull-requests: write
+
+env:
+  DEFAULT_BRANCH: main          # <-- change if your default branch is 'master'
+  BUILD_BRANCH: automated/build
 
 jobs:
   build-and-pr:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout (full history)
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Use Node.js
         uses: actions/setup-node@v4
@@ -29,26 +35,36 @@ jobs:
       - name: Build
         run: npm run build
 
-      # Commit the build output to a long-lived branch
-      - name: Commit build
+      - name: Commit build to ${{ env.BUILD_BRANCH }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # move to/update the automation branch
-          (git checkout automated/build 2>/dev/null && git merge --no-edit "${GITHUB_REF_NAME}") || git checkout -b automated/build
+
+          # Ensure we're branching from the latest default branch
+          git checkout "${DEFAULT_BRANCH}"
+          git pull --ff-only
+
+          # (Re)create the build branch off the default branch
+          git checkout -B "${BUILD_BRANCH}" "${DEFAULT_BRANCH}"
+
+          # Stage & commit build outputs
           git add -A
           if ! git diff --cached --quiet; then
             git commit -m "chore(build): automated build $(date -u +"%Y-%m-%d %H:%M:%S UTC")"
-            git push -u origin HEAD
+            git push -u origin "${BUILD_BRANCH}"
           else
             echo "No changes to commit"
           fi
+
+          # IMPORTANT: switch back to default so PR base != head
+          git checkout "${DEFAULT_BRANCH}"
 
       - name: Create / Update PR
         id: cpr
         uses: peter-evans/create-pull-request@v7
         with:
-          branch: automated/build
+          base: ${{ env.DEFAULT_BRANCH }}     # <— explicit base
+          branch: ${{ env.BUILD_BRANCH }}     # <— PR head
           title: "Automated daily build"
           body: |
             This PR contains artifacts from the scheduled build.
@@ -56,7 +72,6 @@ jobs:
           labels: automated
           delete-branch: false
 
-      # Enable auto-merge on the PR so it merges itself when checks pass
       - name: Enable PR auto-merge
         if: steps.cpr.outputs.pull-request-number != ''
         env:
