@@ -1,8 +1,8 @@
-name: Daily Build (PR via worktree + auto-merge)
+name: Hourly Build (PR via worktree + auto-merge)
 
 on:
   schedule:
-    - cron: "0 3 * * *"   # change to "0 * * * *" for hourly
+    - cron: "0 * * * *"           # hourly, UTC
   workflow_dispatch:
 
 permissions:
@@ -10,9 +10,9 @@ permissions:
   pull-requests: write
 
 env:
-  DEFAULT_BRANCH: main              # change if your default branch is 'master'
+  DEFAULT_BRANCH: main
   BUILD_BRANCH: automated/build
-  BUILD_WORKTREE: ../build-wt
+  BUILD_WORKTREE: ${{ github.workspace }}/build-wt
 
 jobs:
   build-and-pr:
@@ -37,16 +37,33 @@ jobs:
       - name: Build
         run: npm run build
 
-      # Prepare a clean worktree for the build branch so we never switch with dirty files
+      # ——— Worktree prep (robust against previous runs) ———
+      - name: Clean up any stale worktrees
+        shell: bash
+        run: |
+          set -euo pipefail
+          # If a worktree exists at the path, remove it cleanly
+          if git worktree list | grep -F "${BUILD_WORKTREE}" >/dev/null 2>&1; then
+            git worktree remove --force "${BUILD_WORKTREE}" || true
+          fi
+          # Prune stale refs
+          git worktree prune
+          # Also ensure the branch isn't attached to any other worktree
+          # (rare, but belt-and-braces)
+          while git worktree list | awk '{print $1" "$3}' | grep -E " ${BUILD_BRANCH}$" >/dev/null 2>&1; do
+            WT_PATH="$(git worktree list | awk '{print $1" "$3}' | grep -E " ${BUILD_BRANCH}$" | head -n1 | awk '{print $1}')"
+            git worktree remove --force "$WT_PATH" || true
+            git worktree prune
+          done
+
       - name: Prepare build worktree
         shell: bash
         run: |
           set -euo pipefail
           git fetch origin
-
-          # Ensure BUILD_BRANCH exists locally (from origin/BUILD_BRANCH if present, otherwise from DEFAULT_BRANCH)
+          # Ensure BUILD_BRANCH exists locally
           if git show-ref --verify --quiet "refs/heads/${BUILD_BRANCH}"; then
-            echo "Local ${BUILD_BRANCH} exists."
+            :
           else
             if git ls-remote --exit-code --heads origin "${BUILD_BRANCH}" >/dev/null 2>&1; then
               git branch "${BUILD_BRANCH}" "origin/${BUILD_BRANCH}"
@@ -54,15 +71,10 @@ jobs:
               git branch "${BUILD_BRANCH}" "origin/${DEFAULT_BRANCH}"
             fi
           fi
-
-          # Remove any previous worktree path if left behind
-          rm -rf "${BUILD_WORKTREE}"
-
-          # Create worktree attached to BUILD_BRANCH
+          # Create fresh worktree
           git worktree add "${BUILD_WORKTREE}" "${BUILD_BRANCH}"
 
-      # Sync the entire repo state (post-build) into the build worktree
-      - name: Sync files into worktree
+      - name: Sync files into worktree (overwrite, keep repo clean)
         shell: bash
         run: |
           rsync -a --delete \
@@ -75,18 +87,23 @@ jobs:
         run: |
           set -euo pipefail
           cd "${BUILD_WORKTREE}"
-
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
           git add -A
           if ! git diff --cached --quiet; then
             git commit -m "chore(build): automated build $(date -u +"%Y-%m-%d %H:%M:%S UTC")"
-            # Make sure branch tracks remote
             git push -u origin HEAD
           else
             echo "No changes to commit"
           fi
+
+      # ——— Free the branch before PR creation ———
+      - name: Remove worktree and prune
+        shell: bash
+        run: |
+          set -euo pipefail
+          git worktree remove --force "${BUILD_WORKTREE}" || true
+          git worktree prune
 
       - name: Create / Update PR
         id: cpr
@@ -94,7 +111,7 @@ jobs:
         with:
           base: ${{ env.DEFAULT_BRANCH }}
           branch: ${{ env.BUILD_BRANCH }}
-          title: "Automated daily build"
+          title: "Automated hourly build"
           body: |
             This PR contains the scheduled build artifacts.
           commit-message: "chore(build): automated build"
