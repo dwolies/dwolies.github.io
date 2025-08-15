@@ -1,39 +1,65 @@
-name: Daily Build
+name: Daily Build (PR + Auto-merge)
 
 on:
   schedule:
-    - cron: "0 * * * *" # every hour on the hour
-  workflow_dispatch:     # allow manual runs too
+    - cron: "0 3 * * *"   # daily at 03:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write          # push branch
+  pull-requests: write     # open/update PR
 
 jobs:
-  build-and-commit:
+  build-and-pr:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up Node.js
+      - name: Use Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install
+        run: npm ci
 
-      - name: Build project
+      - name: Build
         run: npm run build
 
-      - name: Commit and push changes
+      # Commit the build output to a long-lived branch
+      - name: Commit build
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          # move to/update the automation branch
+          (git checkout automated/build 2>/dev/null && git merge --no-edit "${GITHUB_REF_NAME}") || git checkout -b automated/build
           git add -A
           if ! git diff --cached --quiet; then
-            git commit -m "Automated build $(date -u +"%Y-%m-%d %H:%M:%S UTC")"
-            git push
+            git commit -m "chore(build): automated build $(date -u +"%Y-%m-%d %H:%M:%S UTC")"
+            git push -u origin HEAD
           else
             echo "No changes to commit"
           fi
+
+      - name: Create / Update PR
+        id: cpr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: automated/build
+          title: "Automated daily build"
+          body: |
+            This PR contains artifacts from the scheduled build.
+          commit-message: "chore(build): automated build"
+          labels: automated
+          delete-branch: false
+
+      # Enable auto-merge on the PR so it merges itself when checks pass
+      - name: Enable PR auto-merge
+        if: steps.cpr.outputs.pull-request-number != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr merge --auto --merge "${{ steps.cpr.outputs.pull-request-number }}"
