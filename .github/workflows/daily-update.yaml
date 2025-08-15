@@ -1,56 +1,68 @@
-name: Hourly Build (PR + Auto-merge)
+name: Hourly Pages Build & Deploy
 
 on:
   schedule:
     - cron: "0 * * * *"   # hourly, UTC
   workflow_dispatch:
 
+# Let the Pages deploy API do its thing (no pushes/PRs)
 permissions:
-  contents: write          # needed to push the PR branch
-  pull-requests: write     # needed to create/update PRs
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 env:
-  BASE: main               # change if your default branch is 'master'
-  PR_BRANCH: automated/build
+  NODE_VERSION: '20'
+  DEFAULT_BRANCH: main   # change if 'master'
+  OUT_DIR: site-out
 
 jobs:
-  build-and-pr:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout base branch
+      - name: Checkout sources
         uses: actions/checkout@v4
         with:
-          ref: ${{ env.BASE }}
-          fetch-depth: 0
+          ref: ${{ env.DEFAULT_BRANCH }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
 
       - name: Install & build
         run: |
           npm ci
           npm run build
 
-      # Let the action create the branch & PR from the current (clean) workspace
-      - name: Create / Update PR
-        id: cpr
-        uses: peter-evans/create-pull-request@v7
-        with:
-          # If you enabled the repo setting (Fix 1), you can omit 'token'.
-          # If not, use a PAT (Fix 2):
-          # token: ${{ secrets.GH_PAT }}
-          base: ${{ env.BASE }}
-          branch: ${{ env.PR_BRANCH }}
-          title: "Automated hourly build"
-          commit-message: "chore(build): automated build"
-          labels: automated
+      # Your build writes all over the repo root — package the output cleanly
+      - name: Stage site output
+        run: |
+          rm -rf "${OUT_DIR}"
+          mkdir -p "${OUT_DIR}"
+          rsync -a --delete \
+            --exclude '.git' \
+            --exclude '.github' \
+            --exclude 'node_modules' \
+            ./ "${OUT_DIR}/"
 
-      - name: Enable PR auto-merge
-        if: steps.cpr.outputs.pull-request-number != ''
-        env:
-          # Use the same token you used above. If Fix 1 is enabled, GITHUB_TOKEN is fine.
-          GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
-        run: gh pr merge --auto --merge "${{ steps.cpr.outputs.pull-request-number }}"
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.OUT_DIR }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
