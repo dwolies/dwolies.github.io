@@ -2,7 +2,7 @@ name: Hourly Pages Build & Deploy
 
 on:
   schedule:
-    - cron: "0 * * * *"   # hourly, UTC
+    - cron: "1 0 * * *"   # hourly, UTC
   workflow_dispatch:
 
 # Let the Pages deploy API do its thing (no pushes/PRs)
@@ -39,17 +39,6 @@ jobs:
         run: |
           npm ci
           npm run build
-
-      # Your build writes all over the repo root — package the output cleanly
-      - name: Stage site output
-        run: |
-          rm -rf "${OUT_DIR}"
-          mkdir -p "${OUT_DIR}"
-          rsync -a --delete \
-            --exclude '.git' \
-            --exclude '.github' \
-            --exclude 'node_modules' \
-            ./ "${OUT_DIR}/"
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
