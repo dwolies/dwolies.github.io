@@ -1,8 +1,8 @@
-name: Daily Build (PR + Auto-merge)
+name: Daily Build (PR via worktree + auto-merge)
 
 on:
   schedule:
-    - cron: "0 3 * * *"   # daily at 03:00 UTC (change to "0 * * * *" for hourly)
+    - cron: "0 3 * * *"   # change to "0 * * * *" for hourly
   workflow_dispatch:
 
 permissions:
@@ -10,71 +10,88 @@ permissions:
   pull-requests: write
 
 env:
-  DEFAULT_BRANCH: main          # <-- change if your default branch is 'master'
+  DEFAULT_BRANCH: main              # change if your default branch is 'master'
   BUILD_BRANCH: automated/build
+  BUILD_WORKTREE: ../build-wt
 
 jobs:
   build-and-pr:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout (full history)
+      - name: Checkout default branch (full history)
         uses: actions/checkout@v4
         with:
+          ref: ${{ env.DEFAULT_BRANCH }}
           fetch-depth: 0
 
-      - name: Use Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install
+      - name: Install deps
         run: npm ci
 
       - name: Build
         run: npm run build
 
-      - name: Commit build to ${{ env.BUILD_BRANCH }}
+      # Prepare a clean worktree for the build branch so we never switch with dirty files
+      - name: Prepare build worktree
+        shell: bash
         run: |
+          set -euo pipefail
+          git fetch origin
+
+          # Ensure BUILD_BRANCH exists locally (from origin/BUILD_BRANCH if present, otherwise from DEFAULT_BRANCH)
+          if git show-ref --verify --quiet "refs/heads/${BUILD_BRANCH}"; then
+            echo "Local ${BUILD_BRANCH} exists."
+          else
+            if git ls-remote --exit-code --heads origin "${BUILD_BRANCH}" >/dev/null 2>&1; then
+              git branch "${BUILD_BRANCH}" "origin/${BUILD_BRANCH}"
+            else
+              git branch "${BUILD_BRANCH}" "origin/${DEFAULT_BRANCH}"
+            fi
+          fi
+
+          # Remove any previous worktree path if left behind
+          rm -rf "${BUILD_WORKTREE}"
+
+          # Create worktree attached to BUILD_BRANCH
+          git worktree add "${BUILD_WORKTREE}" "${BUILD_BRANCH}"
+
+      # Sync the entire repo state (post-build) into the build worktree
+      - name: Sync files into worktree
+        shell: bash
+        run: |
+          rsync -a --delete \
+            --exclude '.git' \
+            --exclude 'node_modules' \
+            ./ "${BUILD_WORKTREE}/"
+
+      - name: Commit & push from worktree
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "${BUILD_WORKTREE}"
+
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Ensure we're branching from the latest default branch
-          git checkout "${DEFAULT_BRANCH}"
-          git pull --ff-only
-
-          # (Re)create the build branch off the default branch
-          git checkout -B "${BUILD_BRANCH}" "${DEFAULT_BRANCH}"
-
-          # Stage & commit build outputs
           git add -A
           if ! git diff --cached --quiet; then
             git commit -m "chore(build): automated build $(date -u +"%Y-%m-%d %H:%M:%S UTC")"
-            git push -u origin "${BUILD_BRANCH}"
+            # Make sure branch tracks remote
+            git push -u origin HEAD
           else
             echo "No changes to commit"
           fi
-
-          # IMPORTANT: switch back to default so PR base != head
-          git checkout "${DEFAULT_BRANCH}"
 
       - name: Create / Update PR
         id: cpr
         uses: peter-evans/create-pull-request@v7
         with:
-          base: ${{ env.DEFAULT_BRANCH }}     # <— explicit base
-          branch: ${{ env.BUILD_BRANCH }}     # <— PR head
-          title: "Automated daily build"
-          body: |
-            This PR contains artifacts from the scheduled build.
-          commit-message: "chore(build): automated build"
-          labels: automated
-          delete-branch: false
-
-      - name: Enable PR auto-merge
-        if: steps.cpr.outputs.pull-request-number != ''
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh pr merge --auto --merge "${{ steps.cpr.outputs.pull-request-number }}"
+          base: ${{ env.DEFAULT_BRANCH }}
+          branch: ${{ env.BUILD_BRANCH }}
+          title: "Automated daily
