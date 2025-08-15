@@ -1,125 +1,56 @@
-name: Hourly Build (PR via worktree + auto-merge)
+name: Hourly Build (PR + Auto-merge)
 
 on:
   schedule:
-    - cron: "0 * * * *"           # hourly, UTC
+    - cron: "0 * * * *"   # hourly, UTC
   workflow_dispatch:
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: write          # needed to push the PR branch
+  pull-requests: write     # needed to create/update PRs
 
 env:
-  DEFAULT_BRANCH: main
-  BUILD_BRANCH: automated/build
-  BUILD_WORKTREE: ${{ github.workspace }}/build-wt
+  BASE: main               # change if your default branch is 'master'
+  PR_BRANCH: automated/build
 
 jobs:
   build-and-pr:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout default branch (full history)
+      - name: Checkout base branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ env.DEFAULT_BRANCH }}
+          ref: ${{ env.BASE }}
           fetch-depth: 0
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install deps
-        run: npm ci
-
-      - name: Build
-        run: npm run build
-
-      # ——— Worktree prep (robust against previous runs) ———
-      - name: Clean up any stale worktrees
-        shell: bash
+      - name: Install & build
         run: |
-          set -euo pipefail
-          # If a worktree exists at the path, remove it cleanly
-          if git worktree list | grep -F "${BUILD_WORKTREE}" >/dev/null 2>&1; then
-            git worktree remove --force "${BUILD_WORKTREE}" || true
-          fi
-          # Prune stale refs
-          git worktree prune
-          # Also ensure the branch isn't attached to any other worktree
-          # (rare, but belt-and-braces)
-          while git worktree list | awk '{print $1" "$3}' | grep -E " ${BUILD_BRANCH}$" >/dev/null 2>&1; do
-            WT_PATH="$(git worktree list | awk '{print $1" "$3}' | grep -E " ${BUILD_BRANCH}$" | head -n1 | awk '{print $1}')"
-            git worktree remove --force "$WT_PATH" || true
-            git worktree prune
-          done
+          npm ci
+          npm run build
 
-      - name: Prepare build worktree
-        shell: bash
-        run: |
-          set -euo pipefail
-          git fetch origin
-          # Ensure BUILD_BRANCH exists locally
-          if git show-ref --verify --quiet "refs/heads/${BUILD_BRANCH}"; then
-            :
-          else
-            if git ls-remote --exit-code --heads origin "${BUILD_BRANCH}" >/dev/null 2>&1; then
-              git branch "${BUILD_BRANCH}" "origin/${BUILD_BRANCH}"
-            else
-              git branch "${BUILD_BRANCH}" "origin/${DEFAULT_BRANCH}"
-            fi
-          fi
-          # Create fresh worktree
-          git worktree add "${BUILD_WORKTREE}" "${BUILD_BRANCH}"
-
-      - name: Sync files into worktree (overwrite, keep repo clean)
-        shell: bash
-        run: |
-          rsync -a --delete \
-            --exclude '.git' \
-            --exclude 'node_modules' \
-            ./ "${BUILD_WORKTREE}/"
-
-      - name: Commit & push from worktree
-        shell: bash
-        run: |
-          set -euo pipefail
-          cd "${BUILD_WORKTREE}"
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A
-          if ! git diff --cached --quiet; then
-            git commit -m "chore(build): automated build $(date -u +"%Y-%m-%d %H:%M:%S UTC")"
-            git push -u origin HEAD
-          else
-            echo "No changes to commit"
-          fi
-
-      # ——— Free the branch before PR creation ———
-      - name: Remove worktree and prune
-        shell: bash
-        run: |
-          set -euo pipefail
-          git worktree remove --force "${BUILD_WORKTREE}" || true
-          git worktree prune
-
+      # Let the action create the branch & PR from the current (clean) workspace
       - name: Create / Update PR
         id: cpr
         uses: peter-evans/create-pull-request@v7
         with:
-          base: ${{ env.DEFAULT_BRANCH }}
-          branch: ${{ env.BUILD_BRANCH }}
+          # If you enabled the repo setting (Fix 1), you can omit 'token'.
+          # If not, use a PAT (Fix 2):
+          # token: ${{ secrets.GH_PAT }}
+          base: ${{ env.BASE }}
+          branch: ${{ env.PR_BRANCH }}
           title: "Automated hourly build"
-          body: |
-            This PR contains the scheduled build artifacts.
           commit-message: "chore(build): automated build"
           labels: automated
-          delete-branch: false
 
       - name: Enable PR auto-merge
         if: steps.cpr.outputs.pull-request-number != ''
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Use the same token you used above. If Fix 1 is enabled, GITHUB_TOKEN is fine.
+          GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
         run: gh pr merge --auto --merge "${{ steps.cpr.outputs.pull-request-number }}"
