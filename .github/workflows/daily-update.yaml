@@ -1,57 +1,69 @@
-name: Hourly Pages Build & Deploy
+name: Auto build & push
 
 on:
   schedule:
-    - cron: "1 0 * * *"   # hourly, UTC
-  workflow_dispatch:
+    - cron: "1 9 * * *"
+  workflow_dispatch: {} 
 
-# Let the Pages deploy API do its thing (no pushes/PRs)
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write  # required to push back to the repo
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
-env:
-  NODE_VERSION: '20'
-  DEFAULT_BRANCH: main   # change if 'master'
-  OUT_DIR: site-out
+  group: auto-build-and-push
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout sources
+      - name: Check out main
         uses: actions/checkout@v4
         with:
-          ref: ${{ env.DEFAULT_BRANCH }}
+          ref: main
+          fetch-depth: 0  # so we can commit & push
 
-      - name: Setup Node
+      - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version: 20
           cache: npm
 
-      - name: Install & build
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Configure git author
         run: |
-          npm ci
-          npm run build
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ${{ env.OUT_DIR }}
+      - name: Stage changes under root/
+        id: stage
+        run: |
+          # -A to include deletions/renames inside root/
+          git add -A root
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          # Detect whether anything changed
+          if git diff --staged --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit
+        if: steps.stage.outputs.changed == 'true'
+        run: |
+          git commit -m "chore: automated site rebuild [skip ci]"
+
+      - name: Rebase (just in case) and push
+        if: steps.stage.outputs.changed == 'true'
+        run: |
+          git pull --rebase origin main || true
+          git push origin HEAD:main
+
+      - name: Nothing to commit
+        if: steps.stage.outputs.changed != 'true'
+        run: echo "No changes under root/; skipping commit."
