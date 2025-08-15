@@ -94,4 +94,15 @@ jobs:
         with:
           base: ${{ env.DEFAULT_BRANCH }}
           branch: ${{ env.BUILD_BRANCH }}
-          title: "Automated daily
+          title: "Automated daily build"
+          body: |
+            This PR contains the scheduled build artifacts.
+          commit-message: "chore(build): automated build"
+          labels: automated
+          delete-branch: false
+
+      - name: Enable PR auto-merge
+        if: steps.cpr.outputs.pull-request-number != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh pr merge --auto --merge "${{ steps.cpr.outputs.pull-request-number }}"
