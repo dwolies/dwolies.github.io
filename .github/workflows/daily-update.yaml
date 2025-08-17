@@ -56,7 +56,7 @@ jobs:
       - name: Commit
         if: steps.stage.outputs.changed == 'true'
         run: |
-          git commit -m "chore: automated site rebuild [skip ci]"
+          git commit -m "chore: $(date) automated site rebuild [skip ci]"
 
       - name: Rebase (just in case) and push
         if: steps.stage.outputs.changed == 'true'
