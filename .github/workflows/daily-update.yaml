@@ -46,13 +46,15 @@ jobs:
       - name: Stage changes under root/
         id: stage
         run: |
-          # -A to include deletions/renames inside root/
-          git add -A root
+          git status | head 53
+          git add root
 
           # Detect whether anything changed
           if git diff --staged --quiet; then
+            echo "hello changes"
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
+            echo "weirdly quiet"
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
@@ -64,7 +66,6 @@ jobs:
       - name: Push changes
         if: steps.stage.outputs.changed == 'true'
         run: |
-          #git pull origin main || true  # Ensure we have the latest changes
           git push origin HEAD:main
 
       - name: No changes to commit
