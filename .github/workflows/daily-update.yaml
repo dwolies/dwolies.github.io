@@ -46,7 +46,7 @@ jobs:
       - name: Stage changes under root/
         id: stage
         run: |
-          git status | head 53
+          git status | head -53
           git add root
 
           # Detect whether anything changed
