@@ -33,7 +33,10 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build
+        run: |
+          git pull
+          npm run build
+          
 
       - name: Configure git author
         run: |
