@@ -61,7 +61,7 @@ jobs:
       - name: Push changes
         if: steps.stage.outputs.changed == 'true'
         run: |
-          git pull origin main || true  # Ensure we have the latest changes
+          #git pull origin main || true  # Ensure we have the latest changes
           git push origin HEAD:main
 
       - name: No changes to commit
