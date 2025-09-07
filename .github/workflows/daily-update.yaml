@@ -47,7 +47,9 @@ jobs:
         id: stage
         run: |
           git status | head -53
-          git add root
+          git add root/*
+          echo "add done"
+          git status | head -59
 
           # Detect whether anything changed
           if git diff --staged --quiet; then
