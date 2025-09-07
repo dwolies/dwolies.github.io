@@ -68,7 +68,7 @@ jobs:
       - name: Push changes
         if: steps.stage.outputs.changed == 'true'
         run: |
-          git push origin HEAD:main
+          git push --force origin HEAD:main
 
       - name: No changes to commit
         if: steps.stage.outputs.changed != 'true'
