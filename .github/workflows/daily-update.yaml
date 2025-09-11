@@ -1,21 +1,15 @@
-name: update-o-matic
+name: Boring Workflow Name
 
 on:
   schedule:
     - cron: "59 23 * * *"
-  workflow_dispatch: {}
+  workflow_dispatch:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
-
-concurrency:
-  group: auto-build-and-push
-  cancel-in-progress: false
 
 jobs:
-  build:
+  build_and_commit:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,48 +28,22 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
-        run: |
-          git pull
-          npm run build
+      - name: Run builder
+        run: node builder.js
 
       - name: Configure git author
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Stage changes under root/
-        id: stage
-        run: |
-          git status | head -53
-          git add root/*
-          echo "add done"
-          git status | head -59
-
-          if git diff --staged --quiet; then
-            echo "hello changes"
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "weirdly quiet"
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-          fi
+      - name: Stage changes
+        run: git add root/*
 
       - name: Commit changes
-        if: steps.stage.outputs.changed == 'true'
         run: |
-          git commit -m "chore: $(date) automated site rebuild [skip ci]"
-
-      - name: Push changes
-        if: steps.stage.outputs.changed == 'true'
-        run: |
-          git push --force origin HEAD:main
-
-      - name: Trigger GitHub Pages deployment
-        if: steps.stage.outputs.changed == 'true'
-        uses: actions/deploy-pages@v3
-        with:
-          publish_dir: root
-
-      - name: No changes to commit
-        if: steps.stage.outputs.changed != 'true'
-        run: echo "No changes under root/; skipping commit."
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: $(date) automated site rebuild [skip ci]"
+            git push origin HEAD:main
+          fi
