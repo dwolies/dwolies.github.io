@@ -6,18 +6,27 @@ on:
       - main
 
 permissions:
-  pages: write
-  id-token: write
+  pages: write    # to deploy to Pages
+  id-token: write # to verify the deployment
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Check out main
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Deploy to Pages
-        uses: actions/deploy-pages@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          publish_dir: root
+          path: root
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v3
