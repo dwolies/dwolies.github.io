@@ -5,13 +5,11 @@ on:
     - cron: "59 23 * * *"
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
   build_and_commit:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
     steps:
       - name: Check out main
         uses: actions/checkout@v4
@@ -36,6 +34,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+      - name: Branch setup
+        run: |
+          git branch -D pages
+          git switch --orphan pages
+          git commit --allow-empty -m 'empty root'
+
       - name: Stage changes
         run: git add root/*
 
@@ -45,5 +49,5 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "chore: $(date) automated site rebuild [skip ci]"
-            git push origin HEAD:main
+            git push --force origin HEAD:pages
           fi
