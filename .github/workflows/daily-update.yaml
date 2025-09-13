@@ -37,8 +37,10 @@ jobs:
         run: |
           git branch -v
           git branch -D pages || true
+          git stash
           git switch --orphan pages
           git commit --allow-empty -m 'empty root'
+          git stash pop
 
       - name: Stage changes
         run: git add root/*
