@@ -28,7 +28,7 @@ jobs:
         with:
           path: ${{ env.GENERATOR_DIR }}
 
-      - run: ls -alh
+      - run: git checkout ${{ env.PAGES_REF }}
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -56,8 +56,8 @@ jobs:
       #     git switch --orphan pages
       #     git stash pop
 
-      - name: Stage changes
-        run: git add root/*
+      # - name: Stage changes
+      #   run: git add root/*
 
       - name: Commit changes
         run: |
