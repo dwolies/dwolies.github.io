@@ -14,9 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    defaults:
-      run:
-        working-directory: ${{ env.GENERATOR_DIR }}
     steps:
       - name: Check out pages content
         uses: actions/checkout@v4
@@ -36,12 +33,14 @@ jobs:
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: ${{ env.GENERATOR_DIR }}
+          cache-dependency-path: ./${{ env.GENERATOR_DIR }}/
 
       - name: Install dependencies
+        working-directory: ${{ env.GENERATOR_DIR }}
         run: npm ci
 
       - name: Run builder
+        working-directory: ${{ env.GENERATOR_DIR }}
         run: node builder.js
 
       - name: Configure git author
@@ -57,18 +56,14 @@ jobs:
       #     git switch --orphan pages
       #     git stash pop
 
-      # - name: Stage changes
-      #   run: git add root/*
+      - name: Stage changes
+        run: git add root/*
 
       - name: Commit changes
-        working-directory: ${{ github.workspace }}
         run: |
-          git add root/
           if git diff --staged --quiet; then
-            git status
             echo "No changes to commit"
           else
-            git status
             git commit -m "chore: $(date) automated site rebuild [skip ci]"
-            # git push --force origin HEAD:${{ env.PAGES_REF }}
+            git push --force origin HEAD:${{ env.PAGES_REF }}
           fi
