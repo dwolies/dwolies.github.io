@@ -14,7 +14,6 @@ jobs:
       - name: Check out main
         uses: actions/checkout@v4
         with:
-          ref: main
           fetch-depth: 0
 
       - name: Set up Node
@@ -36,7 +35,8 @@ jobs:
 
       - name: Branch setup
         run: |
-          git branch -D pages
+          git branch -v
+          git branch -D pages || true
           git switch --orphan pages
           git commit --allow-empty -m 'empty root'
 
