@@ -63,9 +63,9 @@ jobs:
       - name: Commit changes
         working-directory: ${{ github.workspace }}
         run: |
+          git add root/
           if git diff --staged --quiet; then
             git status
-            ls -alh root || true
             echo "No changes to commit"
           else
             git status
