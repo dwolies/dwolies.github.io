@@ -28,7 +28,7 @@ jobs:
         with:
           ref: ${{ env.PAGES_REF }}
 
-      - run: ls -alh ${{ env.GENERATOR_DIR }}
+      - run: ls -alh
 
       - name: Set up Node
         uses: actions/setup-node@v4
