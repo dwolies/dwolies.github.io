@@ -6,14 +6,14 @@ import zlib from 'zlib'
 import path from 'path';
 import {guests} from './guests.js'
 
-const outputRoot = './root'
+const outputRoot = '../root'
 const wordRegex = /[\p{L}\p{N}\p{Mn}\p{Pc}\u2019]+/gu;
 
  function formatDate(offset) {
     if(offset == 1 ) {
         return 'Yesterday'
     }
-    
+
     const date = new Date()
     date.setDate(date.getDate() - offset)
 
@@ -144,7 +144,7 @@ function constructIndex(lies) {
                 const currentList = lookup.get(token.soundex)
                 if(currentList) {
                     currentList.push(aLie.id)
-                } else {                
+                } else {
                     lookup.set(token.soundex, [aLie.id])
                 }
             }
@@ -162,10 +162,10 @@ function compressAndExportIndex(lookup, fileName) {
             [zlib.constants.BROTLI_PARAM_LGWIN]: 22,   // Maximum sliding window size
             },
         };
-        
+
     const text = JSON.stringify(Array.from(lookup.entries()))
     const compressed = zlib.brotliCompressSync(text, brotliOptions)
-    fs.writeFileSync(Buffer.from(fileName),compressed)    
+    fs.writeFileSync(Buffer.from(fileName),compressed)
 
     console.log(`${fileName}: raw=${text.length} bytes, brotli=${compressed.length} bytes => ${(compressed.length*100/text.length).toFixed(1)}%`)
 }
@@ -175,7 +175,7 @@ function compressAndExportIndex(lookup, fileName) {
 function toDate(seconds) {
     if(seconds === null || seconds === 0) {
         return '[undated]'
-    }        
+    }
     return new Date(seconds * 1000).toLocaleDateString('en-GB',{ weekday: 'long', day: '2-digit', month: 'long', year: 'numeric', timeZone: 'UTC' })
 }
 
@@ -209,7 +209,7 @@ function annotateLie(thisLie, soundexToLieIndices, soundexToCounter, compact=fal
     }
 
     const lieBody = wrap(`${resultParts.join('')}`)
-    
+
     if(compact) {
         return `<div class="wrap"><div class=lie>${lieBody}</div></div>`
     } else {
@@ -223,14 +223,14 @@ function dateToLindex(lies, date) {
     return ((daysSinceEpoch * 2654435761) % 2**32) % (N + 1);  // hash it right up
 }
 
-function lbreak() { 
+function lbreak() {
     return `<img height="8" src="lbreak.gif" width="600" />`
 }
-function vpad() { 
+function vpad() {
     return `<div class=mpad/>&nbsp;</div>`
 }
 
-function dateLabel(text, offset) { 
+function dateLabel(text, offset) {
     return `<div class=lotddate>${text}${formatDate(offset)}</div>`
 }
 
@@ -244,7 +244,7 @@ const markers = {
 }
 
 function makeGl(soundexToLieIndices, soundexToCounter) {
-    
+
     for(let i in guests) {
         const bits = []
         const guest = guests[i]
@@ -258,9 +258,9 @@ function makeGl(soundexToLieIndices, soundexToCounter) {
         let alt = 0
         for(let lie of guest.lies) {
             bits.push(
-                lbreak(),  
-                vpad(),                                              
-                markers[alt][0],           
+                lbreak(),
+                vpad(),
+                markers[alt][0],
                 annotateLie({lie: lie, liar: guest.name}, soundexToLieIndices, soundexToCounter, true),
                 markers[alt][1])
 
@@ -289,7 +289,7 @@ function makeAwol(lies, soundexToLieIndices, soundexToCounter) {
         bits.push(history > 1 ? `<p>${lbreak()}</p>` : '')
         bits.push(
             dateLabel('The lie of ', history),
-            markers[history%2][0], 
+            markers[history%2][0],
             annotateLie(lie, soundexToLieIndices, soundexToCounter),
             markers[history%2][1])
     }
@@ -299,19 +299,19 @@ function makeAwol(lies, soundexToLieIndices, soundexToCounter) {
 
 function makeLotd(lies, soundexToLieIndices, soundexToCounter) {
     const bits = []
-    
+
     const currentDate = new Date()
     const lie = lies[dateToLindex(lies, currentDate)]
     bits.push(
         dateLabel('The lie of today, ',0),
-        lbreak(), 
+        lbreak(),
         vpad(),
         annotateLie(lie, soundexToLieIndices, soundexToCounter))
-    
+
     fs.writeFileSync(`${outputRoot}/lotd.htm`, makeHeader('lotd') + bits.join('') + footer)
 }
 
-function resolvePartial(name) {    
+function resolvePartial(name) {
     fs.writeFileSync(`${outputRoot}/${name}.htm`, makeHeader(name) + fs.readFileSync(`partials/${name}.htm`, 'utf8') + footer);
 }
 
@@ -366,7 +366,7 @@ try {
             thinned.push({lie: l, liar: g.name, id: -1 })
         }
     }
- 
+
     const soundexToLieIndices = constructIndex(thinned)
 
     // init the counters to random positions
@@ -383,13 +383,13 @@ try {
         fs.writeFileSync(`${outputRoot}/${thinned[i].id}.htm`, makeHeader('?') + annotateLie(thinned[i], soundexToLieIndices, soundexToCounter) + footer)
     }
     console.log(thinned.length + ' pages written to ' + outputRoot)
-    
+
     makeAwol(thinned, soundexToLieIndices, soundexToCounter)
 
     makeGl(soundexToLieIndices, soundexToCounter)
 
     makeLotd(thinned, soundexToLieIndices, soundexToCounter)
-    
+
     resolvePartial('dwol')
     resolvePartial('cl')
     resolvePartial('dol')
@@ -397,7 +397,7 @@ try {
     copyStatic()
 
     fs.copyFileSync(`${outputRoot}/lotd.htm`, `${outputRoot}/index.html`) // required for github pages
-    
+
 } catch (e) {
     console.log(e);
 }
