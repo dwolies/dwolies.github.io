@@ -26,6 +26,7 @@ jobs:
       - name: Check out pages content
         uses: actions/checkout@v4
         with:
+          clean: false
           ref: ${{ env.PAGES_REF }}
 
       - run: ls -alh
@@ -35,7 +36,7 @@ jobs:
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: ./${{ env.GENERATOR_DIR }}/package-lock.json
+          cache-dependency-path: ${{ env.GENERATOR_DIR }}
 
       - name: Install dependencies
         run: npm ci
