@@ -39,7 +39,6 @@ jobs:
           git branch -D pages || true
           git stash
           git switch --orphan pages
-          git commit --allow-empty -m 'empty root'
           git stash pop
 
       - name: Stage changes
@@ -48,6 +47,7 @@ jobs:
       - name: Commit changes
         run: |
           if git diff --staged --quiet; then
+            echo "Currently, this should never happen"
             echo "No changes to commit"
           else
             git commit -m "chore: $(date) automated site rebuild [skip ci]"
