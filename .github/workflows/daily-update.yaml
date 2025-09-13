@@ -5,16 +5,28 @@ on:
     - cron: "59 23 * * *"
   workflow_dispatch:
 
+env:
+  GENERATOR_DIR: gen
+  PAGES_REF: pages
+
 jobs:
   build_and_commit:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    defaults:
+      run:
+        working-directory: ${{ env.GENERATOR_DIR }}
     steps:
-      - name: Check out main
+      - name: Check out generator
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          path: ${{ env.GENERATOR_DIR }}
+
+      - name: Check out pages content
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.PAGES_REF }}
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -33,13 +45,13 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Branch setup
-        run: |
-          git branch -v
-          git branch -D pages || true
-          git stash
-          git switch --orphan pages
-          git stash pop
+      # - name: Branch setup
+      #   run: |
+      #     git branch -v
+      #     git branch -D pages || true
+      #     git stash
+      #     git switch --orphan pages
+      #     git stash pop
 
       - name: Stage changes
         run: git add root/*
@@ -47,9 +59,8 @@ jobs:
       - name: Commit changes
         run: |
           if git diff --staged --quiet; then
-            echo "Currently, this should never happen"
             echo "No changes to commit"
           else
             git commit -m "chore: $(date) automated site rebuild [skip ci]"
-            git push --force origin HEAD:pages
+            # git push --force origin HEAD:${{ env.PAGES_REF }}
           fi
