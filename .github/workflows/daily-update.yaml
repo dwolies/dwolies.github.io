@@ -28,7 +28,7 @@ jobs:
         with:
           path: ${{ env.GENERATOR_DIR }}
 
-      - run: git checkout ${{ env.PAGES_REF }}
+      - run: git branch -v
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -64,6 +64,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
+            git status
             git commit -m "chore: $(date) automated site rebuild [skip ci]"
             # git push --force origin HEAD:${{ env.PAGES_REF }}
           fi
