@@ -1514,7 +1514,7 @@
 - id: 2231
   liar: Jason Buk
   lie: Hulk Hogan is a woman.
-  status: A
+  status: R
   submitted_on: null
 - id: 2288
   liar: David Kenning, kenningd@which.co.uk
@@ -9731,13 +9731,13 @@
   lie: Debbie Daniels (wife of the famous magician Paul Daniels) has ants living inside
     her veins, building a community and feasting off of the bacteria deposited there
     by Paul's magic
-  status: A
+  status: R
   submitted_on: null
 - id: 1312
   liar: Sir Edward of Ward
   lie: The outer core of the sun burns at only 13 degrees but, due to the effects
     of relativity, on Earth it feels hotter, often in excess of 15 degrees Celsius.
-  status: A
+  status: R
   submitted_on: null
 - id: 1314
   liar: dave, kenningd@which.co.uk
@@ -10327,7 +10327,7 @@
   liar: Carl (mbdtscw@afs.mcc.ac.uk)
   lie: Struggling premiership football team Everton were originally called St. Flamingo's
     in honour of the patron saint of water filtering birds.  They were forced to change
-    their name because their first captain Mint Everton refused to play in pink.
+    their name because their first captain, Mint Everton, refused to play in pink.
   status: A
   submitted_on: null
 - id: 1430
@@ -13738,24 +13738,24 @@
 - id: 1999
   liar: pete@oakhouse.demon.co.uk
   lie: Photography was invented by Henry VIII but suppressed by the clergy.
-  status: A
+  status: R
   submitted_on: null
 - id: 2000
   liar: pete@oakhouse.demon.co.uk
   lie: Coriander grows 3 miles underground.
-  status: A
+  status: R
   submitted_on: null
 - id: 2001
   liar: Coriander grows 3 miles underground.
   lie: Sean Connery has been successfully cloned, allowing "him" to star in as many
     as 3 cinema releases simultaneously.
-  status: A
+  status: R
   submitted_on: null
 - id: 2006
   liar: Mel Allen.
   lie: The earth rather than being spherical in shape is actually a giant cube.  Its
     apparent roundness is an illusion produced by the curvature of the human eyeball.
-  status: A
+  status: R
   submitted_on: null
 - id: 2003
   liar: pete@oakhouse.demon.co.uk
@@ -13786,7 +13786,7 @@
 - id: 2007
   liar: Ronald Pieket, London, England.
   lie: Sunshine all year round would become boring.
-  status: A
+  status: R
   submitted_on: null
 - id: 2008
   liar: cmeo@aus.sun.com
@@ -13808,7 +13808,7 @@
   submitted_on: null
 - id: 2011
   liar: Simon McCallum  mccallum@graylab.ac.uk
-  lie: The Dead Sea Scrolls contain several references to Linford Christie.
+  lie: The Dead Sea Scrolls contain several references to athlete Linford Christie.
   status: A
   submitted_on: null
 - id: 2012
@@ -13839,7 +13839,7 @@
 - id: 2018
   liar: Simon McCallum  mccallum@graylab.ac.uk
   lie: Toast, when buttered on both sides, is unaffected by gravity.
-  status: A
+  status: R
   submitted_on: null
 - id: 2019
   liar: Simon McCallum  mccallum@graylab.ac.uk
@@ -14641,7 +14641,7 @@
   submitted_on: null
 - id: 2150
   liar: Steven Grady (grady@xcf.berkeley.edu)
-  lie: Common vampire bats are made from 50% vampire, 50% polyester.
+  lie: Common vampire bats are actually made from 50% vampire, 50% polyester.
   status: A
   submitted_on: null
 - id: 2151
@@ -16007,19 +16007,18 @@
 - id: 2385
   liar: Michael Howard
   lie: Milton Keynes was designed by M C Escher.
-  status: A
+  status: R
   submitted_on: null
 - id: 2386
   liar: Michael Howard
   lie: Following an advertisement campaign on national television which depicted a
     killer whale and several sea lions, the intake for De-Montfort University's BA
     degree in "Large Sea Mammal Avoidance" has increased by 300%
-  status: A
+  status: R
   submitted_on: null
 - id: 2387
   liar: Michael Howard
-  lie: Prehistoric man evolved ears and a nose to stop his spectacles falling off
-    of his face
+  lie: Prehistoric man evolved ears and a nose to stop his spectacles falling off.
   status: A
   submitted_on: null
 - id: 2388
@@ -16440,7 +16439,7 @@
 - id: 2458
   liar: steves@allinfosys.com
   lie: The country of Ecuador is ruled by "Bonanza"'s Lorne Greene.
-  status: A
+  status: R
   submitted_on: null
 - id: 2459
   liar: steves@allinfosys.com
@@ -18157,24 +18156,23 @@
   liar: Doug Clow <PRE>   djmc100@york.ac.uk </PRE>
   lie: The body of composer Johann Sebastian Bach is preserved in formalin and kept
     in a special presentation case at the rear of York Minster. A microphone and loudspeaker
-    have been fitted to allow any proclamations by the deceased virtuoso to be heard
-    by anyone within ten yards.
+    have been fitted to allow proclamations by the deceased virtuoso to be more easily heard.
   status: A
   submitted_on: null
 - id: 2749
   liar: Bud Mortenson (bmortens@direct.ca)
   lie: Dumbo appears next to Jumbo on the Periodic Table of the Elephants.
-  status: A
+  status: R
   submitted_on: null
 - id: 2750
   liar: Chris chrisc@tag.co.uk
   lie: The three most important things in life are fish.
-  status: A
+  status: R
   submitted_on: null
 - id: 2751
   liar: Nathan Sidwell <PRE>   nathan@pact.rf.ac.uk </PRE>
   lie: A car's air bag is inflated by engine exhaust gases, and therefore does not
-    function until the engine has been working for at least 3 miles.
+    function until the engine has been running for at least 3 minutes.
   status: A
   submitted_on: null
 - id: 2752
@@ -18187,7 +18185,7 @@
 - id: 2753
   liar: Dr Shrews Berry
   lie: The Pope harbours wanted criminals in his cassock.
-  status: A
+  status: R
   submitted_on: null
 - id: 2754
   liar: Roger Freedman rpf@diacam.demon.co.uk
@@ -18195,7 +18193,7 @@
     perfect classical Greek. Recently a research study using DNA probes and financed
     by US Office of Naval Research has shown that these animals are all descendants
     of a single Cairns terrier originally brought to the area by Welsh settlers.
-  status: A
+  status: R
   submitted_on: null
 - id: 2756
   liar: Ade Ward (a2ward@plym.ac.uk)
@@ -18204,56 +18202,56 @@
     nicknamed it the 'Intelligent' chip.  If it wasn't for Intel we would not have
     aeroplanes, we would not know how to do some maths and we would all be floating
     in the air.
-  status: A
+  status: R
   submitted_on: null
 - id: 2757
   liar: George Flurnip (clemog@cs.man.ac.uk)
   lie: Ruth Madoc of Hi-De-Hi fame once worked as an assassin for a Mexican paramilitary
     organisation.
-  status: A
+  status: R
   submitted_on: null
 - id: 2758
   liar: Uncle Bill
   lie: It is a common fallacy that famous clothes designer Versace makes any of his
     clothes. They are made by the fashion pixies, which are attracted to his house
     by small piles of sugar.
-  status: A
+  status: R
   submitted_on: null
 - id: 2759
   liar: jkingsbury@channel4.co.uk
   lie: Puppies like confined spaces and heavily subdued lighting for long periods
     of time.
-  status: A
+  status: R
   submitted_on: null
 - id: 2760
   liar: Professor Whitley Keele
   lie: Trappist monks are in fact allowed to utter the word, "celery" . . . but choose
     not to.
-  status: A
+  status: R
   submitted_on: null
 - id: 2761
   liar: PAUL (cia95ps@sheffield.ac.uk)
   lie: Snails can live for up to 300 years, growing to a diameter of 14ft. Unfortunately,
     snail poachers have now endangered this graceful and elegant creature.
-  status: A
+  status: R
   submitted_on: null
 - id: 2762
   liar: bburgess@axionet.com
   lie: Elephants are used exclusively for crushing grapes in the booming african wine
     industry.
-  status: A
+  status: R
   submitted_on: null
 - id: 2763
   liar: SJA
   lie: Ontario contains the worlds last-surviving pancake mines.  Unfortunately, the
     maple syrup mines are long-since exhausted.
-  status: A
+  status: R
   submitted_on: null
 - id: 2764
   liar: Bud Mortenson (bmortens@direct.ca)
   lie: The first internal combustion engine burned coal in an open box behind a steam
     boiler.
-  status: A
+  status: R
   submitted_on: null
 - id: 2766
   liar: AJ (A.J.Wells@politics.hull.ac.uk)
@@ -18714,10 +18712,7 @@
   submitted_on: null
 - id: 2836
   liar: geister@fix.net
-  lie: Roughly 14% of the sky is not there at all, although to the unaided eye it
-    appears to be so. As things stand now, it is not known whether the eye fills in
-    the blanks or if the mind has created the empty spaces. Soon, sophisticated instruments
-    will be utilised to answer these and several other questions.
+  lie: Roughly 14% of the sky is not there at all.
   status: A
   submitted_on: null
 - id: 2837
@@ -40720,7 +40715,7 @@
 - id: 5976
   liar: Darren
   lie: The tides of the sea are caused by the slow breathing of a single massive octopus.
-  status: A
+  status: R
   submitted_on: 1092406749
 - id: 5983
   liar: Darren
@@ -41665,7 +41660,7 @@
 - id: 6908
   liar: Pat Foy
   lie: Dame Agatha Christie's novels were ghostwritten by William Shakespeare.
-  status: A
+  status: R
   submitted_on: 1100430975
 - id: 7118
   liar: christian
@@ -41714,7 +41709,7 @@
   liar: Charlton Heston (dameshirleyporter@westminster.gov.uk)
   lie: By 2025, Cockney rhyming slang will be the most widely spoken language on the
     planet.
-  status: A
+  status: R
   submitted_on: 1097754949
 - id: 6372
   liar: Dust to Dust ndusting@hotmail.com
@@ -41727,7 +41722,7 @@
   lie: Toads can tapdance; they aquire this skill early on in their tadpole stage.
     Scientists can delay the transition of tadpole to toad, resulting in a tadpole
     that can Samba, Cha-Cha and (on occasion) perform integral calculus.
-  status: A
+  status: R
   submitted_on: 1097755864
 - id: 6370
   liar: Theodore H Biscuit (dadswoods@hotmail.com)
@@ -41747,7 +41742,7 @@
   submitted_on: 1043405640
 - id: 6374
   liar: Dust to Dust
-  lie: Niagara falls will cease to be in January 2005. The US Senate has passed a
+  lie: Niagara falls will cease to be in just three years from now. The US Senate has passed a
     bill to dam the falls and replace them with two statues of Jim Carrey in commemoration
     of his dual Canadian-American nationality.
   status: A
@@ -41761,9 +41756,9 @@
   liar: Stu Becker (stubee_v3@hotmail.com)
   lie: The game 'Lemmings' was based on decades of painstaking behavioural research
     into the lifecycles of these secretive rodents. Prototypes of the game included
-    lemmings skilled in cooking, accounting and telecommunications which were, sadly,
-    never included in the final release as they were just too boring.
-  status: R
+    lemmings skilled in cooking, accounting and telecommunications. Sadly they
+    not included in the final release as they were too boring.
+  status: A
   submitted_on: 1097797933
 - id: 6594
   liar: Brian Scholer
@@ -42139,7 +42134,7 @@
 - id: 7122
   liar: Pat Foy
   lie: "Jamaica is the only nation ever to be located at the North Pole.\r\n"
-  status: A
+  status: R
   submitted_on: 1102046890
 - id: 7556
   liar: JPummer@optonline.net
@@ -43909,19 +43904,19 @@
   liar: Tom Dudley
   lie: The myth that the highest score on the SAT is 1600 was started so as to easily
     spot nerds who are lying. The highest score ever recorded was 1570.
-  status: A
+  status: R
   submitted_on: 1098587224
 - id: 6545
   liar: Neil Cicierega
   lie: James Polk's name has been immortalized by the popular phrase, "That's just
     one Polk away from an assload of Polk."
-  status: A
+  status: R
   submitted_on: 1098590779
 - id: 6559
   liar: Neil Cicierega
   lie: William McKinley was impeached in 803 B.C. after being accused of sexually
     assaulting a circus clown.
-  status: A
+  status: R
   submitted_on: 1098590994
 - id: 6699
   liar: bloodyname@hotmail.com
@@ -44380,13 +44375,13 @@
   liar: Theodore H Biscuit (dadswoods@hotmail.com)
   lie: Pancake day is to be remaned Sunny D day in a 12 million pound sponsorship
     deal.
-  status: A
+  status: R
   submitted_on: 1101068895
 - id: 7324
   liar: Theodore H Biscuit (dadswoods@hotmail.com)
   lie: The five breeds of carnivorous rabbit in the UK almost hunted each other to
     extinction before they learnt to roam in packs and prey on cattle and horses.
-  status: A
+  status: R
   submitted_on: 1103713500
 - id: 7366
   liar: Drew
@@ -44397,7 +44392,7 @@
   liar: alanpartri6ge@netscape.net
   lie: "Somewhere in the eastern fields of Quebec there lies a huge glowing hedgehog.\r\
     \nIf you ever see the hedgehog, large pieces of Norway will explode."
-  status: A
+  status: R
   submitted_on: 1100916392
 - id: 6930
   liar: Charlton Heston (dameshirleyporter@westminster.gov.uk)
@@ -44416,7 +44411,7 @@
   liar: David Wildey
   lie: Granny pleaser Cliff Richard is actually called Richard Cliff, his name deriving
     from the fact he is half limestone on his paternal side.
-  status: A
+  status: R
   submitted_on: 1100958893
 - id: 6893
   liar: Mr Fibb
@@ -44441,7 +44436,7 @@
   lie: At the stroke of midnight on the 31st December 1999 the printer and paper manufacturers
     colluded, using the millenium bug as cover, and shrank the size of A4 by 10%,
     hence increasing global sales overnight.
-  status: A
+  status: R
   submitted_on: 1101198431
 - id: 7008
   liar: Dust to Dust ndusting@hotmail.com
@@ -44450,7 +44445,7 @@
     Franklin could not read. He thus dismissed his invention as whimsey and buried
     it along with his prototype television, radio and original drawings for "Loaded"
     magazine.
-  status: A
+  status: R
   submitted_on: 1101127021
 - id: 7009
   liar: Paul Turland paulturland@aol.com
@@ -44460,13 +44455,13 @@
 - id: 7015
   liar: Paul Turland paulturland@aol.com
   lie: Branwell Bronte, brother of the writers Emily and Charlotte, died standing
-    up leaning against the mantlepiece, just to prove that it could be done.
+    up leaning against a mantlepiece, just to prove that it could be done.
   status: A
   submitted_on: 1101127600
 - id: 7010
   liar: Paul Turland paulturland@aol.com
   lie: "Orthinology is the science of word-botching.\r\n\r\n"
-  status: A
+  status: R
   submitted_on: 1101127150
 - id: 7016
   liar: Charlton Heston (dameshirleyporter@westminster.gov.uk)
@@ -44477,7 +44472,7 @@
   liar: Theodore H Biscuit (dadswoods@hotmail.com)
   lie: Just before leaving office Rudolf Gulliani renamed New York in a secret ceremony.
     Now the city's official moniker is "I tawt I taw a puddy tat".
-  status: A
+  status: R
   submitted_on: 1101109769
 - id: 7017
   liar: Charlton Heston (dameshirleyporter@westminster.gov.uk)
@@ -44488,7 +44483,7 @@
   liar: Theodore H Biscuit (dadswoods@hotmail.com)
   lie: To help bring the British Royal Family's image up to date, this year's Queen's
     speech, is going to be broadcast as a Manga animation.
-  status: A
+  status: R
   submitted_on: 1101112447
 - id: 7020
   liar: Larry Mcgee
@@ -44503,7 +44498,7 @@
 - id: 6932
   liar: Sean the unusally cool monster  with a hint of lime
   lie: ' God is acually a giant salamander. '
-  status: A
+  status: R
   submitted_on: 1100466602
 - id: 6935
   liar: Paul Wayper (paulway@mabula.net)
@@ -44514,7 +44509,7 @@
 - id: 7609
   liar: Wibble Wibble Hatstand ndusting@hotmail.com
   lie: The use of Instant Messaging can encourage the growth of facial warts.
-  status: A
+  status: R
   submitted_on: 1106142853
 - id: 4143
   liar: mr. dumass
@@ -44530,25 +44525,25 @@
   liar: Simon Smith <not simon.smith@cableinet.co.uk>
   lie: The bite of the wild strawberry can pierce tissue paper like it was tissue
     paper.
-  status: A
+  status: R
   submitted_on: 1188756117
 - id: 7097
   liar: Charlton Heston (dameshirleyporter@westminster.gov.uk)
   lie: The chip shop owners of Britain have voted for the sixth consecutive year that
     the Telegraph is the best newspaper chip wrapper in the UK.
-  status: A
+  status: R
   submitted_on: 1101461741
 - id: 7099
   liar: Moge
   lie: There is a west-facing wall in the Italian town of Scunthorpe, from which Europe's
     entire population of moss can trace its lineage.
-  status: A
+  status: R
   submitted_on: 1101475568
 - id: 4936
   liar: Jason Turner kingofthegroovers@btinternet.com
   lie: Celebrating where tax payers' money is going is the most popular past-time
     in most pubs in Yorkshire.
-  status: A
+  status: R
   submitted_on: 1082738830
 - id: 7747
   liar: Wibble Wibble hatstand ndusting@hotmail.com
@@ -44565,7 +44560,7 @@
   liar: jamie finlinson
   lie: The verb "nodding" is derived from an old Native American pastime involving
     buffalo and ravioli.
-  status: A
+  status: R
   submitted_on: 1100626572
 - id: 7297
   liar: Theodore H Biscuit (dadswoods@hotmail.com)
@@ -45253,14 +45248,14 @@
   liar: Brian Scholer
   lie: The United States military utilizes a vast array of amusement park train rides
     to smuggle UFOs around the country.
-  status: A
+  status: R
   submitted_on: 1044183342
 - id: 6828
   liar: Charlton Heston (dameshirleyporter@westminster.gov.uk)
   lie: Elephants are said to be scared of mice because mice are so small that they
     can crawl up elephants' trunks. This, of course, is rubbish. The real reason is
     that mice have a far better understanding of the rules of chess.
-  status: A
+  status: R
   submitted_on: 1099769476
 - id: 6617
   liar: Brian Scholer
@@ -62710,7 +62705,7 @@
   liar: random_words_r_th_best_words@yahoo.co.uk
   lie: All people read with their left eye, except for laminated papers. We use the
     right eye for this task.
-  status: A
+  status: R
   submitted_on: 1125348860
 - id: 9956
   liar: M
@@ -64262,7 +64257,7 @@
 - id: 14303
   liar: Simon Smith <not simon.smith@cableinet.co.uk>
   lie: Not only does 'nougat' rhyme with 'flange', it also tastes exactly the same.
-  status: A
+  status: R
   submitted_on: 1168190703
 - id: 10138
   liar: Paul Wayper (paulway@mabula.net)
@@ -65870,7 +65865,7 @@
   liar: Simon Smith <not simon.smith@cableinet.co.uk>
   lie: Not only does 'nougat' rhyme with 'flange', and taste exactly the same, they
     also have a birthday in common and keep stealing one another's girlfriends.
-  status: A
+  status: R
   submitted_on: 1168190790
 - id: 10413
   liar: Josiah Mellonhead
@@ -66313,7 +66308,7 @@
 - id: 13987
   liar: Theking@retardsrule.com
   lie: This sentence is a lie.
-  status: A
+  status: R
   submitted_on: 1164001812
 - id: 10604
   liar: Ian Cowley
@@ -68698,7 +68693,7 @@
   liar: Simon Smith <not simon.smith@cableinet.co.uk>
   lie: For the last 28 minutes, watering cans have been waging a vicious guerilla
     war against the colour purple.
-  status: A
+  status: R
   submitted_on: 1184172270
 - id: 16074
   liar: Dunx (dunx@dunx.org)
@@ -68710,7 +68705,7 @@
 - id: 16759
   liar: Brian
   lie: John Henshaw is an inflatable.
-  status: A
+  status: R
   submitted_on: 1238488609
 - id: 15900
   liar: 'Lou '
@@ -68720,13 +68715,13 @@
 - id: 11569
   liar: Dan1
   lie: During World War I fresh air came in rations.
-  status: A
+  status: R
   submitted_on: 1142774265
 - id: 11004
   liar: fatcaster
   lie: A complete ban on non-smokers is to be enforced in all pubs and bars in Wales
     from March 2006.
-  status: A
+  status: R
   submitted_on: 1136894923
 - id: 14299
   liar: Dick
@@ -68734,7 +68729,7 @@
     of two main ingredients.  The first being a carbohydrate source such as rice or
     noodles. The second component that is used in chinese food can be vegetables,
     fish or meat.
-  status: A
+  status: R
   submitted_on: 1168142989
 - id: 15348
   liar: Samuel Pepys
@@ -68746,7 +68741,7 @@
   liar: Don Candy
   lie: "\r\nDon Quixote had an insufferable phobia of childrens' TV classic Camberwick\
     \ Green."
-  status: A
+  status: R
   submitted_on: 1136989451
 - id: 15717
   liar: Simon Smith <not simon.smith@cableinet.co.uk>
@@ -68756,24 +68751,24 @@
 - id: 15102
   liar: Lucky D
   lie: "The letter D is silent in every language.\r\n"
-  status: A
+  status: R
   submitted_on: 1175106989
 - id: 11026
   liar: Nick Harding
   lie: The Etch-a-Sketch is still the preferred tool of most advanced CAD artists.
-  status: A
+  status: R
   submitted_on: 1137074330
 - id: 12908
   liar: Brian Gingold
   lie: The Saxons were defeated in 1255 by the Tenors from the east.  It was during
     this conflict that the tenor saxaphone was invented.
-  status: A
+  status: R
   submitted_on: 1156102079
 - id: 15410
   liar: Daniel Wright
   lie: 'The first rulers, which were invented by the Japanese inventor Tony Blair
     in 1345, required cheese to function properly.  '
-  status: A
+  status: R
   submitted_on: 1181244280
 - id: 13683
   liar: chris kortjohn
@@ -69123,13 +69118,13 @@
   liar: The Number 8
   lie: Lies date back to the Mesozoic era. Early Lebanese fossils show angiosperms
     lied to their parents when they went out at night.
-  status: A
+  status: R
   submitted_on: 1160008849
 - id: 15272
   liar: Jim Weisz
   lie: Rod Steward and Kim Carnes are two of the multiple personalities of Robert
     Morgenstern of Poukepsee, NY.
-  status: A
+  status: R
   submitted_on: 1178276806
 - id: 11551
   liar: John Lang
@@ -69142,12 +69137,12 @@
 - id: 15183
   liar: Paul Turland
   lie: chuck norris wiped out the dinosaurs
-  status: A
+  status: R
   submitted_on: 1176766488
 - id: 15741
   liar: Polly Brown out of Pickettywitch
   lie: Keith Tinkywinkydipsylalaandpo Chegwin has the world's longest first name.
-  status: A
+  status: R
   submitted_on: 1192008765
 - id: 12551
   liar: Wimster
@@ -69158,29 +69153,28 @@
   liar: Candide
   lie: Steve Bruce was the first living Manchester United footballer to be sainted
     by Papal Bull.
-  status: A
+  status: R
   submitted_on: 1137452414
 - id: 11060
   liar: Count Alfonso Dorado (sproutmaster@maxwellhouse.com)
   lie: The Isle of Wight does not physically exist.
-  status: A
+  status: R
   submitted_on: 1137490469
 - id: 15574
   liar: Simon Smith <not simon.smith@cableinet.co.uk>
   lie: In Northern Ireland, sex is only permitted when Hearts beat Celtic.
-  status: A
+  status: R
   submitted_on: 1187031534
 - id: 15962
   liar: 'Bob Myklabust '
   lie: Restaurants in Trondheim will only serve parties of diners composed of a prime
-    number of males in excess of three.  All the meals are served with a light famy
-    head.
+    number of males in excess of three.
   status: A
   submitted_on: 1204971687
 - id: 11054
   liar: Candide
   lie: Horseradish has only one natural predator, the Hump-back Whale.
-  status: A
+  status: R
   submitted_on: 1137452177
 - id: 10065
   liar: Earl jenkins@hotmail.com
@@ -69207,7 +69201,7 @@
 - id: 11068
   liar: mercerpaul2004@yahoo.co.uk
   lie: The Northern Lights are actually Batman's call signal.
-  status: A
+  status: R
   submitted_on: 1137599850
 - id: 13405
   liar: Stevegannon828@hotmail.com
@@ -69535,9 +69529,9 @@
   submitted_on: 1138034006
 - id: 15273
   liar: Joshua Belsky (jjbelsky@yahoo.com)
-  lie: "Southern Nevada is quite cool for most of the year. The high temperatures\
-    \ in the city of Las Vegas are a result of giant underground heaters installed\
-    \ by the city in order to keep people inside the air conditioned casinos.\r\n"
+  lie: Southern Nevada is quite cool for most of the year. The high temperatures
+    in the city of Las Vegas are a result of giant underground heaters installed
+    by the city in order to keep people inside the air conditioned casinos.
   status: A
   submitted_on: 1178343163
 - id: 11117
@@ -70399,13 +70393,13 @@
   lie: Not only does 'nougat' rhyme with 'flange', taste the same, have the same birthday
     and many girlfriends in common, it also has identical preferences in expensive
     flamboyantly-coloured silk waistcoats.
-  status: A
+  status: R
   submitted_on: 1168191051
 - id: 13632
   liar: Halbringer
   lie: The internet was originally invented during the first world war to ensure that
     the allied generals always had their regular supply of porn
-  status: A
+  status: R
   submitted_on: 1161720792
 - id: 12171
   liar: Eric TF Bat, bat@flurf.net
@@ -70420,7 +70414,7 @@
 - id: 11212
   liar: Evil Moo!!
   lie: If you look directly at the sun for 3 to 4 hours, your vision will be improved
-    so much that you can actually see through most walls and surfaces.
+    so much that you can actually be able to see through most walls and surfaces.
   status: A
   submitted_on: 1139085442
 - id: 12180
@@ -70434,17 +70428,17 @@
   liar: Arne Frantzell (dzorback@yahoo.com)
   lie: The Great Wall of China was not built to keep invaders out, but to keep the
     Chinese in.
-  status: A
+  status: R
   submitted_on: 1139103946
 - id: 15960
   liar: 'parry '
   lie: "once when i was youn i had four faces \r\n"
-  status: A
+  status: R
   submitted_on: 1204923193
 - id: 15357
   liar: 'Gavin Bradley  '
   lie: If you run really fast during a storm,it is possible to avoid the rain.
-  status: A
+  status: R
   submitted_on: 1180017620
 - id: 11226
   liar: John Ellis Wool
@@ -70454,12 +70448,12 @@
 - id: 11227
   liar: John Ellis Wool
   lie: Mount Everest is actually a meteorite that struck the earth in 1754.
-  status: A
+  status: R
   submitted_on: 1139115110
 - id: 11228
   liar: John Ellis Wool
-  lie: Pizza was invented in 1957 by the original NASA scientists in Hampton, Virginia.  The
-    first pizza is in the Air & Space Museum in Washington, D. C.
+  lie: Pizza was invented as space food in 1957 by the NASA scientists in Hampton, Virginia.  The
+    first pizza is on display in the Air & Space Museum in Washington, DC.
   status: A
   submitted_on: 1139115437
 - id: 13761
@@ -70467,7 +70461,7 @@
   lie: The 1970's sweet 'Spangles' were banned in 1984 after tests showed they contained
     12% LSD.Many a childs brain was ravaged by these sweetmeats,the most famous being
     Jimmy Saville.
-  status: A
+  status: R
   submitted_on: 1162666650
 - id: 15966
   liar: Candide
@@ -70480,14 +70474,14 @@
   submitted_on: 1205351216
 - id: 18505
   liar: Theodore H Biscuit (dadswoods@hotmail.com)
-  lie: 'Pirate Bay was taken off-line due to an infestation of woodlice. '
+  lie: 'Pirate Bay was once taken off-line due to an infestation of woodlice. '
   status: A
   submitted_on: 1393652260
 - id: 15427
   liar: Bart Gwynn
   lie: The world has, in actual fact, at least 4 other equators. However it is generally
     considered impolite and unorthodox to discuss the others.
-  status: A
+  status: R
   submitted_on: 1181852103
 - id: 15342
   liar: Joshua Belsky (jjbelsky@yahoo.com)
@@ -70807,26 +70801,26 @@
 - id: 11335
   liar: Wolverine Master
   lie: Bowling balls were originally made out of cheese.
-  status: A
+  status: R
   submitted_on: 1139947922
 - id: 11503
   liar: Dunx (dunx@dunx.org)
   lie: The popular song "Three Coins in a Fountain" is an allegory for the ancient
     recipe to turn base metal into gold, Frank Sinatra being a mighty alchemist.
-  status: A
+  status: R
   submitted_on: 1141345786
 - id: 18506
   liar: Sherlock
   lie: Anyone can summon ninjas if they know what to chant around the ninja shrines.
     When they appear you must beat their leader, but then they will be your loyal
     bodyguards for life.
-  status: A
+  status: R
   submitted_on: 1394156812
 - id: 13341
   liar: Giles Gear
   lie: "Spanish is actually the language spoken by cocker spaniels,and the  acronmyn\
     \ RS also stands for repetitive strain, quite fitting really.\r\n\r\n"
-  status: A
+  status: R
   submitted_on: 1159868632
 - id: 11258
   liar: Paul Wayper (paulway@mabula.net)
@@ -70841,17 +70835,17 @@
 - id: 11344
   liar: Count Alfonso Dorado (sproutmaster@maxwellhouse.com)
   lie: Winston Churchill was the first British PM to attend the Commons' annual roller-disco.
-  status: A
+  status: R
   submitted_on: 1139992431
 - id: 13691
   liar: willyboy54@yahoo.com
   lie: Borzoi are actually inbred cheetahs and not dogs as previously believed.
-  status: A
+  status: R
   submitted_on: 1162127033
 - id: 13763
   liar: El Toro Guano
   lie: A dog will never step in its own feces.
-  status: A
+  status: R
   submitted_on: 1162667962
 - id: 11349
   liar: Martin
@@ -70862,7 +70856,7 @@
   liar: Darren
   lie: The Thompson Twins sold more records in the 1980s than every other band put
     together.
-  status: A
+  status: R
   submitted_on: 1140082677
 - id: 11352
   liar: Darren
@@ -70872,12 +70866,12 @@
 - id: 11353
   liar: Darren
   lie: Telephones operate on the same principle as aspirin.
-  status: A
+  status: R
   submitted_on: 1140082865
 - id: 13951
   liar: Jpummer@optonline.net
   lie: Before Auto Recycling, Jamesburg was known for it's horse recycling..
-  status: A
+  status: R
   submitted_on: 1163766551
 - id: 14072
   liar: paul.ledger@romeike.com
@@ -70886,44 +70880,44 @@
     from reigning champion Terry Griffiths after he took 274 minutes chalking his
     cue in the 1979 World Championship final before having ankle bitten by a young
     Mike Tyson.
-  status: A
+  status: R
   submitted_on: 1164972829
 - id: 13868
   liar: Birds Custard Powder (tony.hart@takehart.bbc.co.uk)
   lie: "Under the layer of magma, beneath the earth\xB4s crust, lies several miles\
     \ of compressed jazz-funk."
-  status: A
+  status: R
   submitted_on: 1163274990
 - id: 11399
   liar: Mr T Eller
   lie: Tuna is not edible in the southern hemisphere.
-  status: A
+  status: R
   submitted_on: 1140430518
 - id: 11401
   liar: fatcaster
   lie: Cats can be trained to dive for pearls.
-  status: A
+  status: R
   submitted_on: 1140448868
 - id: 15276
   liar: Gombat
   lie: The President of the United states is clearly both clever and smart
-  status: A
+  status: R
   submitted_on: 1178540001
 - id: 14143
   liar: Birds Custard Powder (tony.hart@takehart.bbc.co.uk)
   lie: The common garden snail has turned to eating trampolines as most of its natural
     food, swingball sets, have dropped out of fashion.
-  status: A
+  status: R
   submitted_on: 1165649766
 - id: 11403
   liar: Brian Scholer
-  lie: American Express was founded and is run entirely by American ex-presidents.
+  lie: American Express was founded and is, to this day, run entirely by American ex-presidents.
   status: A
   submitted_on: 1140450848
 - id: 14252
   liar: El Toro Guano
   lie: On the original space shuttle the heat tiles were held on with Elmer's Glue.
-  status: A
+  status: R
   submitted_on: 1167583831
 - id: 13392
   liar: Birds Custard Powder (tony.hart@takehart.bbc.co.uk)
@@ -70931,7 +70925,7 @@
     \ death of Marmaduke Hussey, he has been relentlessly pursued by a giant curly-wurly\
     \ named Bobby.\r\n     \r\n     \r\n     \r\n          \r\n          \r\n    \
     \      \r\n          \r\n          \r\n          \r\n"
-  status: A
+  status: R
   submitted_on: 1160125959
 - id: 15980
   liar: Chris Kortjohn
@@ -70941,7 +70935,7 @@
     \ country for too long.  \r\nHowever, in South africa one can buy the anti toxin,\
     \ pure bleach. It cures the ailment but causes sunburn and an attraction towards\
     \ khaki. "
-  status: A
+  status: R
   submitted_on: 1206574014
 - id: 11366
   liar: John Lang
@@ -71624,7 +71618,7 @@
 - id: 11459
   liar: 'abilene '
   lie: ' Green Jelly Babies are capable of breeding '
-  status: A
+  status: R
   submitted_on: 1140869081
 - id: 17948
   liar: Home on Deranged
@@ -92122,7 +92116,7 @@
 - id: 18586
   liar: Scott Finneran
   lie: Only three words in the English langauage rhyme with "hat".
-  status: A
+  status: R
   submitted_on: 1414387041
 - id: 18648
   liar: Paul Wayper (paulway@mabula.net)
@@ -93682,26 +93676,26 @@
 - id: 18052
   liar: Pashizzle No.9314
   lie: This sentence is a lie
-  status: A
+  status: R
   submitted_on: 1308471656
 - id: 17868
   liar: ella mcdonald emcdonald@freeussr.org
   lie: The reason cats always land on their feet is because their pads have magnets
     which are attracted to the ground. When a cat falls, their magnets, which need
     a direct impact on the ground, cause the entire body to flip over.
-  status: A
+  status: R
   submitted_on: 1295111876
 - id: 16780
   liar: steven Thackwray
   lie: the resting heart rate of a sloth is 12 beats per minute.  if a human were
     to have a heart rate this slow it would decrease their chances of heart disease
     by 93%
-  status: A
+  status: R
   submitted_on: 1239319302
 - id: 17507
   liar: Owen Allen
   lie: The answer to the riddle of the universe is 24.
-  status: A
+  status: R
   submitted_on: 1272288195
 - id: 17917
   liar: Earl E Knight
@@ -93719,7 +93713,7 @@
   lie: 'After actress Jenny Taylier sustained localised second-degree burns, health
     and safety considerations meant that subsequent performances of "Fanny by Gaslight"
     have been cancelled. '
-  status: A
+  status: R
   submitted_on: 1300141840
 - id: 17539
   liar: sand4@hotmail.com
@@ -97342,7 +97336,7 @@
   liar: Seamus F Sweeney
   lie: This sentence is a lie. The previous sentence is true. If the first and second
     sentences in this paragraph are true, then this sentence is true.
-  status: A
+  status: R
   submitted_on: 1277247307
 - id: 18180
   liar: mrgreen28@hotmail.co..uk
@@ -97356,7 +97350,7 @@
     \ all then\",\r\n\r\nand\r\n\r\nHappy Rotter and \"Sod being an Auror, being a\
     \ banker is fine\".\r\n\r\n\r\nNo doubt we will follow Happy's career with interest.\r\
     \n\r\n\r\n\r\n\r\n"
-  status: A
+  status: R
   submitted_on: 1325465212
 - id: 17840
   liar: Lindsay Hocking
@@ -97604,70 +97598,70 @@
 - id: 18181
   liar: Saraf Nawar
   lie: The number 3 comes after the number 5.
-  status: A
+  status: R
   submitted_on: 1325759425
 - id: 18152
   liar: Pip (we have no email on Saturn)
   lie: Saturn is *the* happening place nowadays. This was due to statute passed in
     1878 by the US government in league with UK legislature.
-  status: A
+  status: R
   submitted_on: 1320326645
 - id: 18216
   liar: Hornblower
   lie: Ozzy Ozbourne and Gary Glitter are the same person.
-  status: A
+  status: R
   submitted_on: 1329831466
 - id: 17980
   liar: caroline
   lie: A local by-law in Dunedin, New Zealand, prohibits the keeping of sofas indoors
     during daylight saving
-  status: A
+  status: R
   submitted_on: 1301470091
 - id: 18273
   liar: denny g.
   lie: Superman wears Freddie Mercury on his shirt.
-  status: A
+  status: R
   submitted_on: 1341170882
 - id: 18311
   liar: Stevie Campbell gandhisarmpit@hotmail.com
   lie: "The chemical formula of Love is CH3 - three parts hugs to one part cocaine.\r\
     \n\r\nThe chemical formula of Hate is PW - equal parts paranoia and whiskey. "
-  status: A
+  status: R
   submitted_on: 1345724919
 - id: 16384
   liar: Richard Zooble
   lie: Belgian nuns are issued with AK-47's for after they have spent time in mandatory
     suspended animation.
-  status: A
+  status: R
   submitted_on: 1222081661
 - id: 16792
   liar: steven Thackwray
   lie: barack obama is proof white americans cant be arsed to vote
-  status: A
+  status: R
   submitted_on: 1239320762
 - id: 16619
   liar: Daniel Craig
   lie: 'Note: as previously believed it is not in fact possible to get lost in Daniel
     Craig`s eyes.'
-  status: A
+  status: R
   submitted_on: 1232469554
 - id: 16724
   liar: Gavin
   lie: Throwing a clump of mud at your neighbour is perfectly legal in England ,providing
     you catch him/her unawares.
-  status: A
+  status: R
   submitted_on: 1237719842
 - id: 16771
   liar: peanutismint@gmail.com
-  lie: "A hummingbird flaps its wings 3000 times a second, producing a controlled\
-    \ wingtip temperature of 450\xB0F (one degree short of 451\xB0F, the temperature\
-    \ at which birds burn)."
+  lie: A hummingbird flaps its wings 3000 times a second, producing a 
+    wingtip temperature of 450F, remarkably just one degree short of 451F, the temperature 
+    at which birds combust.
   status: A
   submitted_on: 1239318004
 - id: 17080
   liar: nfras
   lie: I have had sexual relations with that woman, Ms Lewinsky.
-  status: A
+  status: R
   submitted_on: 1251368569
 - id: 18337
   liar: Paul Wayper <paulway&#64;mabula.net>
@@ -97690,13 +97684,13 @@
   liar: Dave Thackwray
   lie: the australian funnel web spider has a venom so strong it can render any man
     disabled in 20 minutes.  the spider usually kills itself afterwards out of guilt.
-  status: A
+  status: R
   submitted_on: 1239318496
 - id: 16793
   liar: steven Thackwray
   lie: 'david schwimmer can hold his breath for well over three minutes as his previous
     profession was a pearl diver.  '
-  status: A
+  status: R
   submitted_on: 1239320849
 - id: 15445
   liar: Benny Boy (extremestreaker@hotmail.com)
@@ -98478,17 +98472,17 @@
   liar: steven Thackwray
   lie: 'jewish people are not allowed to cut their side burns because of a passage
     in the tora telling them it looks cool.  '
-  status: A
+  status: R
   submitted_on: 1239320137
 - id: 16808
   liar: Da UtImAtE lIamma
   lie: this is the lie that will screw zenos paradox
-  status: A
+  status: R
   submitted_on: 1239571577
 - id: 13542
   liar: '[Julia]'
   lie: " \r\n \r\n \r\n \r\n \r\n%"
-  status: A
+  status: R
   submitted_on: 1161295258
 - id: 16352
   liar: fmorton@ntlworld.com
@@ -98497,45 +98491,45 @@
     \ to her, someone born in Copenhagen has a scent that is equal parts cinnamon,\
     \ tangerine and burning rubber, while a native of Muncie, Indiana reeks of tobacco\
     \ leaves packed in styrofoam, and babies\u2019 tears.  "
-  status: A
+  status: R
   submitted_on: 1220457869
 - id: 16820
   liar: joss.town@town.demon.co.uk
   lie: A recent survey showed that 70% of all cheese is made from earwax,bellybutten
     fluff and toenail clppings
-  status: A
+  status: R
   submitted_on: 1240290523
 - id: 16828
   liar: Robin
   lie: '"Dave''s Web of Lies" contains no lies.'
-  status: A
+  status: R
   submitted_on: 1240498974
 - id: 16390
   liar: Richard Zooble
   lie: Daddy Longlegs at one point ruled the Earth, until one of them left the washing
     machine on, causing the Big Bang.
-  status: A
+  status: R
   submitted_on: 1222082006
 - id: 16834
   liar: Steven Sc ullion
   lie: Whales are not mammals at all. They are, in fact,  a very large type of haddock.
-  status: A
+  status: R
   submitted_on: 1241214507
 - id: 16713
   liar: Gavin
   lie: Once married,it is illegal for a man to divorce his horse.
-  status: A
+  status: R
   submitted_on: 1237715245
 - id: 16750
   liar: Connor Wilson
   lie: Noel Edmunds, shortly after his abrupt end to his presenting career, has become
     an officer in the Gestapo.
-  status: A
+  status: R
   submitted_on: 1238156563
 - id: 17056
   liar: Gee
   lie: There are twenty-five hours in a day.
-  status: A
+  status: R
   submitted_on: 1250260444
 - id: 16767
   liar: Simon Smith <not simon.smith@cableinet.co.uk>
@@ -98546,11 +98540,11 @@
 - id: 16751
   liar: Mr.Nobody
   lie: The newspaper was originally invented for swatting flies.
-  status: A
+  status: R
   submitted_on: 1238156685
 - id: 17081
   liar: nfras
-  lie: Axl Rose sleeps on a bed of nails. Ironically, Jimmy Nail sleeps on a bed of
+  lie: Axl Rose sleeps on a bed of nails, whereas, Jimmy Nail sleeps on a bed of
     lettuce.
   status: A
   submitted_on: 1251369414
@@ -98568,85 +98562,85 @@
 - id: 16787
   liar: steven Thackwray
   lie: the khoran is mainly knock knock jokes.  most are not funny
-  status: A
+  status: R
   submitted_on: 1239320170
 - id: 16353
   liar: fmorton@ntlworld.com
   lie: 'The most interesting thing about Orlando Bloom is his name. '
-  status: A
+  status: R
   submitted_on: 1220457903
 - id: 17055
   liar: Gee
   lie: I am telling the truth.
-  status: A
+  status: R
   submitted_on: 1250183283
 - id: 16608
   liar: Steve
   lie: Although the walnut is about the same size as a Stegasaurus's brain, it is
     not able to defend itself with a long spikey tail, or appear in B movies with
     Igaunas.
-  status: A
+  status: R
   submitted_on: 1231739384
 - id: 16715
   liar: Gavin
   lie: Contrary to popular belief,heaven is not missing an angel.
-  status: A
+  status: R
   submitted_on: 1237715342
 - id: 16716
   liar: Gavin
   lie: Because of their large intestines,cows are able to swallow themselves.
-  status: A
+  status: R
   submitted_on: 1237715434
 - id: 16788
   liar: steven Thackwray
   lie: 'elvis is not dead.  he was on an easyjet flight to aya nappa in march where
     he regularly dj''s.  '
-  status: A
+  status: R
   submitted_on: 1239320300
 - id: 16809
   liar: Jack
   lie: Strip-poker was invented by George Bush when he accidentally went into a pole-dancing
     club instead of his usual casino.
-  status: A
+  status: R
   submitted_on: 1239638053
 - id: 16609
   liar: Steve
   lie: All lies are created equal. It's just that some get out of hand and run wild
     a bit.
-  status: A
+  status: R
   submitted_on: 1231739445
 - id: 15179
   liar: Samuel Pepys
   lie: Due to ancient and obscure semantic laws, sentences that include exclamation
     marks cannot contain untruths.
-  status: A
+  status: R
   submitted_on: 1176727377
 - id: 16717
   liar: Gavin
   lie: The average life of a sparrow is 142 years.
-  status: A
+  status: R
   submitted_on: 1237715487
 - id: 16768
   liar: steven thackwray
   lie: the neighbours character 'stingray' was axed from the show amid fears people
     would relate him to the death of steve irwin
-  status: A
+  status: R
   submitted_on: 1239317268
 - id: 16354
   liar: fmorton@ntlworld.com
   lie: 'Rory Bremner is not a smug, pointless cunt. He just does an uncanny impression
     of one. '
-  status: A
+  status: R
   submitted_on: 1220457949
 - id: 16718
   liar: Gavin
   lie: A bird in the bush is not worth 2 in the hand.
-  status: A
+  status: R
   submitted_on: 1237715540
 - id: 16719
   liar: Gavin
   lie: A headache can be avoided by applying fish paste to your toes.
-  status: A
+  status: R
   submitted_on: 1237715590
 - id: 15989
   liar: Simon Smith <not simon.smith@cableinet.co.uk>
@@ -98657,12 +98651,12 @@
   liar: peanutismint@gmail.com
   lie: The element 'Nitrogen' is emitted by trees at night.  This is why it is dangerous
     to walk in forests at night as you may suffocate.
-  status: A
+  status: R
   submitted_on: 1239317495
 - id: 16375
   liar: Sam Waters salty_waters@hotmail.co.uk
   lie: Paul Turland makes up lies on here that are actually true.
-  status: A
+  status: R
   submitted_on: 1221923579
 - id: 15477
   liar: Norman Hartnell (not to be confused with the other Norman Hartnell)
@@ -98670,7 +98664,7 @@
     asked how was his trip from Liverpool to London, he replied "It was lovely", ommitting
     to mention that he was attacked by a band of Navaho braves just outside of Daventry.
     Since this, the telling of fibs has spread like wildfire.
-  status: A
+  status: R
   submitted_on: 1182941380
 - id: 16355
   liar: fmorton@ntlworld.com
@@ -98678,32 +98672,30 @@
     \ of Tezcatlipoca, the ancient Mesoamerican chaos god. She expresses this belief\
     \ by habitually placing knives in her hosts\u2019 fork drawers. Furthermore, she\
     \ cannot check out of a bed and breakfast without pissing in the shampoo bottles. "
-  status: A
+  status: R
   submitted_on: 1220457993
 - id: 15559
   liar: P. Staker
   lie: Belgium is situated at the confluence of thousands of ancient ley lines.  This
-    explains why over 4000 lies catalogued at this website refer to Belgium or Belgians.  The
-    French have known this for centuries, which is why there are so many "Belgian"
-    jokes told in France.
+    explains why over 4,000 lies catalogued in this database refer to Belgium or Belgians.
   status: A
   submitted_on: 1186665961
 - id: 16391
   liar: Richard Zooble
   lie: During the War, nappies were considered a delicacy.
-  status: A
+  status: R
   submitted_on: 1222082102
 - id: 15733
   liar: Lindsay Hocking
   lie: The curly little balance springs in wristwatches are made from the antennae
     of Latvian Gypsy Moths.
-  status: A
+  status: R
   submitted_on: 1191920053
 - id: 16022
   liar: Chris Kortjohn
   lie: New trees growing in the war ravaged forests of Viet-Nam have evolved to withstand
     Napalm.
-  status: A
+  status: R
   submitted_on: 1207348425
 - id: 16439
   liar: Elliotasimmons@aol.com
@@ -99370,49 +99362,49 @@
 - id: 4244
   liar: KURT
   lie: The Spice Girls met up when they all simultaneously bent down to pick up the
-    same starfish on a beach in Brighton. (Duplicate of http://www.davesweboflies.com/search.cgi?id=Sqs)
+    same starfish on a Brighton beach.
   status: A
   submitted_on: null
 - id: 16061
   liar: Norman Hartnell (not to be confused with the other Norman Hartnell)
   lie: It is a criminal offence to inclue Danish Blue on a cheeseboard.
-  status: A
+  status: R
   submitted_on: 1208409366
 - id: 14675
   liar: Harvey
   lie: Are you looking for real amateur sluts in hot xxx action? Perfect! You won
-  status: A
+  status: R
   submitted_on: 1169597241
 - id: 16194
   liar: Carl
   lie: Jesus was crucified for looking at a hooded, black youth in "a funny way"
-  status: A
+  status: R
   submitted_on: 1214993623
 - id: 16211
   liar: Pat Foy
   lie: Andean condors constantly vibrate at precisely 440Hz. This property has been
     exploited both in condor deterrents and Ecuadorian recording studios.
-  status: A
+  status: R
   submitted_on: 1215247169
 - id: 17082
   liar: Owen Allen
   lie: J. K. Rowling shaves her back.
-  status: A
+  status: R
   submitted_on: 1251379598
 - id: 16063
   liar: S J Rowe
   lie: I was unable to think of one that i hadn't previously used. I'm so sorry.
-  status: A
+  status: R
   submitted_on: 1208453236
 - id: 16216
   liar: Elsa MUNDAY
   lie: Jerusalem was originally named after a lost wallaby found in the south pole.
-  status: A
+  status: R
   submitted_on: 1215264303
 - id: 14783
   liar: Ashley Ku
   lie: Shit happens, is it?
-  status: A
+  status: R
   submitted_on: 1170194746
 - id: 15587
   liar: driving101@babytacklesfrombehind.com
@@ -99421,20 +99413,20 @@
     \  Hit a pedestrian\r\n5 if you hit a lady with a baby and the baby lands in a\
     \ manhole thats called a birdie its worth 5 points\r\n6 lawyers are 100,000,000,000,000\
     \ points\r\n7 speed as fast as you can\r\n8 avoid cops at all costs"
-  status: A
+  status: R
   submitted_on: 1187210460
 - id: 14989
   liar: jillterryjill2000@yahoo.com
   lie: Hotel key cards (room entry plastic card) have the renters personal data on
     the key card.   The card usually has a mangnetic strip like a credit card which
     stores the info.   How true is this?   Thanks
-  status: A
+  status: R
   submitted_on: 1173427426
 - id: 16064
   liar: Benny Boy (extremestreaker@hotmail.com)
   lie: 'Working for a living from the day you graduate to the day you turn 65 is a
     fulfilling, rewarding, enjoyable and wholesome way to live out your life. '
-  status: A
+  status: R
   submitted_on: 1208506535
 - id: 16109
   liar: Dan Morton
@@ -99446,70 +99438,70 @@
   liar: Henry Burr
   lie: "       The Battle of the Crimean Pennisula was fought on the banks of the\r\
     \nCrimea River."
-  status: A
+  status: R
   submitted_on: 1253387820
 - id: 16065
   liar: ellie cane
   lie: cheese and bananas are the main source of all four dimentianal blobs of glue.
     this also means that president george bush is a duffus.
-  status: A
+  status: R
   submitted_on: 1208518444
 - id: 16464
   liar: The 100th Night
   lie: Marillion walk to their own gigs to cut down on fuel bills.
-  status: A
+  status: R
   submitted_on: 1225993939
 - id: 16066
   liar: Iona Thompson
   lie: 90% of our biology is extremely similar to that of the tomatoe.
-  status: A
+  status: R
   submitted_on: 1208518506
 - id: 13718
   liar: Bob
   lie: lesbo%2Derotica%0D%0A5
-  status: A
+  status: R
   submitted_on: 1162262443
 - id: 15595
   liar: 'Easily Amused '
   lie: "What leads you to think that I am easily amused?  What proof do you have?\r\
     \nThanks. "
-  status: A
+  status: R
   submitted_on: 1187211868
 - id: 14103
   liar: noam
   lie: Buy Xenical, Xenical Weight Loss, Cheap Xenical, Cheapest Xenical, Xenical
     Onl
-  status: A
+  status: R
   submitted_on: 1165286576
 - id: 16470
   liar: Millets Crew
   lie: The band "Steps" got there name by the number of steps they had to walk from
     there london council flat to the recording studio.
-  status: A
+  status: R
   submitted_on: 1226576057
 - id: 14866
   liar: dutch nationals commitee
   lie: Wim Stoop is a black American, given that the dutch are amongst the tallest
     people in the world, and Mr Stoop (being around 5 foot) fits into the average
     height for a black native american.. fact!
-  status: A
+  status: R
   submitted_on: 1170889588
 - id: 16067
   liar: Iona Thompson
   lie: The hundred years war was caused by the fight over which was better, bananas
     or lamb chops served with a mint sauce and caramelised oninons.
-  status: A
+  status: R
   submitted_on: 1208518714
 - id: 13498
   liar: Joshua Murray
   lie: It has recently been proven in a Harvard study, that i am roughly 45% better
     than you.
-  status: A
+  status: R
   submitted_on: 1161034814
 - id: 305
   liar: Nik Newark
   lie: Michael Fish is Fish out of Marillion's dad.
-  status: A
+  status: R
   submitted_on: null
 - id: 16068
   liar: ellie cane rules
@@ -99517,7 +99509,7 @@
     \ topology and word processing. also databases and spreadsheets are good ways\
     \ of presenting the data protection act. meaning that i unregretabbly donot like\
     \ bananas.\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
-  status: A
+  status: R
   submitted_on: 1208518728
 - id: 15971
   liar: Lady Isobel Mortimer, FRS
@@ -99526,12 +99518,12 @@
     \ in the future. That is why we are committed to fostering and maintaining a work\
     \ environment where every employee feels included, valued and respected.\r\n\r\
     \n\r\nSource: msn.careerbuilder.co.uk<I>Jobs</I>Company<I>C7C3S96BLKS4K62VS86</I>Eds/?cbsid=72dd34b79b2643838f20c7dd046c7221-259399964-KF-5&&cbRecursionCnt=1"
-  status: A
+  status: R
   submitted_on: 1206095643
 - id: 16297
   liar: Kieran White
   lie: 'Dan Griffiths has a huge penis. '
-  status: A
+  status: R
   submitted_on: 1218407367
 - id: 16301
   liar: Chris Jantsch <jantsch@netzero.net>
@@ -99540,12 +99532,12 @@
     visitors from the rest of the world. Having trained to peak-form in smog-saturated
     air the lack of solids and increased percentage of oxygen could only be overcome
     with carbon-monoxyde inhalers.
-  status: A
+  status: R
   submitted_on: 1218849631
 - id: 16304
   liar: lsamail61@gmail.com
   lie: britney spears is a born again virgin
-  status: A
+  status: R
   submitted_on: 1219216436
 - id: 16306
   liar: Simon Smith <not simon.smith@cableinet.co.uk>
@@ -99558,13 +99550,13 @@
     the occurrence of cynicism among journalists and the electorate, who now tend
     to chose their representatives solely on their looks and ability to entertain
     on reality TV shows.
-  status: A
+  status: R
   submitted_on: 1219552328
 - id: 16876
   liar: Phil Jones
   lie: Following a test case in Surbiton, the courts have established that pregnant
     women are not suitable as a child's pet.
-  status: A
+  status: R
   submitted_on: 1244209141
 - id: 16382
   liar: Richard Zooble
@@ -99830,46 +99822,46 @@
   lie: 'In Bulgaria caramelised dwarf rabbits are a delicacy but are not allowed to
     be served on the same plate as battered mouse due to an unfortunate incident.
     This is where the phrase ''man or mouse'' was first used. '
-  status: A
+  status: R
   submitted_on: 1215328543
 - id: 16230
   liar: Saranne Hornbuckle
   lie: Men and women are supposed to live together.
-  status: A
+  status: R
   submitted_on: 1215346675
 - id: 16231
   liar: Carl
-  lie: Lewis Hamilton only takes one breathe during each Grand Prix
+  lie: Lewis Hamilton takes but a single breath during each Grand Prix race.
   status: A
   submitted_on: 1215415333
 - id: 16232
   liar: Carl
   lie: Spanish men can have sex 13 times in half an hour
-  status: A
+  status: R
   submitted_on: 1215417080
 - id: 16237
   liar: Matthias D' Ablo
   lie: Stanley Kubrick's classic film "Apocalypse Now" was originaly intended to be
     set in Scunthorpe.
-  status: A
+  status: R
   submitted_on: 1215531438
 - id: 16238
   liar: James grandidge
   lie: The nose piece on the Concord was so sharp it could pierce space and time.
-  status: A
+  status: R
   submitted_on: 1215599457
 - id: 16240
   liar: Matthias D'Ablo
   lie: "Ex-Marillion singer Fish (real name Nora Flange) is not a real fish. He is\
     \ actually a newt. When the rest of the band discoved this shameful secret, they\
     \ kicked him out & replaced him with a garden gnome.\r\n"
-  status: A
+  status: R
   submitted_on: 1215600917
 - id: 16241
   liar: Dom Estos
   lie: Dwarves while human in form are in fact clockwork, and therefore require 5
     mins of winding up every day by a key placed in their back.
-  status: A
+  status: R
   submitted_on: 1215605114
 - id: 16243
   liar: Pecora
@@ -99877,61 +99869,59 @@
     with the possible existence of extra-terresterial life.  He was grossly mis-quoted.  What
     he actually said was that the "Catholic Church has problems due to the existence
     of extra-terresterial life within".
-  status: A
+  status: R
   submitted_on: 1215812732
 - id: 16244
   liar: Pecora
   lie: The "sludge monster" referred to in your explicitive is actually a "typo".  What
     was meant to be typed was "slug" monster, relative to the inordinate amount of
     time it takes to determine the presence of any truth within a lie.
-  status: A
+  status: R
   submitted_on: 1215812898
 - id: 16246
   liar: donna erqust
   lie: CNN is actually for babies to learn speaking.
-  status: A
+  status: R
   submitted_on: 1215877905
 - id: 16248
   liar: rory
   lie: buttons were origanally invented to stop people with large noses wasting to
     much air when they breath
-  status: A
+  status: R
   submitted_on: 1215884387
 - id: 16249
   liar: L. Egend
   lie: Prosemitism is not the favouring of the Jewish, or any other semitic, nation
     above any non-semitic nation but, in fact, favouring Shula Cara above any other
     semite; past, present or future.
-  status: A
+  status: R
   submitted_on: 1216064336
 - id: 16250
   liar: Phil Docherty
   lie: 'Prosemitism is not the favouring of the Jewish, or any other semitic, nation
     above any non-semitic nation but, in fact, favouring Shula Cara above any other
     semite; past, present or future. '
-  status: A
+  status: R
   submitted_on: 1216064573
 - id: 16253
   liar: samuel roberts
   lie: An Oxymoron is in fact a moron whose genetic structure is cimposed entirely
     of Oxygen
-  status: A
+  status: R
   submitted_on: 1216083227
 - id: 16254
   liar: Paul Wayper (paulway@mabula.net)
   lie: A secret plan by the CIA planned to install giant electromagnets on either
     side of the Gatun Locks that form the northern entrance to the Panama Canal.  The
     plan was to activate them on enemy ships, which would then be completely magnetised
-    and would hurtle uncontrollably toward the North pole.  The plan was shelves when
-    they realised that it would they would instead hit Cuba and drive it into the
-    US mainland.
+    and would hurtle uncontrollably toward the North pole.
   status: A
   submitted_on: 1216128467
 - id: 16258
   liar: P. Staker
   lie: Music for the Minke Whale (a traditional Inuit musical instrument) is written
     fourteen octaves higher than its actual pitch.
-  status: A
+  status: R
   submitted_on: 1216377610
 - id: 16259
   liar: Max
@@ -99943,60 +99933,60 @@
   lie: Finchley, London was named after actor Peter Finch; Crouch End was named after
     footballer Peter Crouch, and Pratt's Bottom in Kent was named after racing commentator
     John McCrewick.
-  status: A
+  status: R
   submitted_on: 1216713654
 - id: 16265
   liar: Chris Kortjohn
   lie: A McDonalds double cheese burger is only one molecule away from feces.
-  status: A
+  status: R
   submitted_on: 1216945236
 - id: 16267
   liar: Chris Kortjohn
   lie: "Taking viagra and ecstasy at the same time will cure herpes, genital warts\
     \ and multiple sclerosis.\r\nIt also prevents pregnancy.  "
-  status: A
+  status: R
   submitted_on: 1216945557
 - id: 16268
   liar: Chris Kortjohn
   lie: Frogs leg bones resemble springs
-  status: A
+  status: R
   submitted_on: 1216945669
 - id: 16271
   liar: Pat Foy
   lie: I bribed Paul Wayper with a jar of hummus to get this lie published.
-  status: A
+  status: R
   submitted_on: 1216979421
 - id: 16272
   liar: Pat Foy
   lie: "People who wish to be \"as rich as Croesus\" are unaware that when he died\
     \ his bank had an overdraft of $32.11 in his savings account and a $250,000 mortgage\
     \ on his house.\r\n\r\n"
-  status: A
+  status: R
   submitted_on: 1216980156
 - id: 16273
   liar: Pat Foy
   lie: All goldfish can smile - and most of them do.
-  status: A
+  status: R
   submitted_on: 1216980227
 - id: 16274
   liar: Pat Foy
   lie: "The line really is \"'Scuse me while I kiss this guy.\" The alternate version\
     \ was promulgated by Jimi Hendrix fans uncomfortable with the original in the\
     \ then-prevailing social climate.\r\n"
-  status: A
+  status: R
   submitted_on: 1216984398
 - id: 16278
   liar: Forrest
   lie: The word "palindrome" was originally the name given to any seahorse born with
     the legs of a man.
-  status: A
+  status: R
   submitted_on: 1217016487
 - id: 16279
   liar: Forrest
   lie: All men named Oliver can only turn when moving in reverse. Studies questioning
     whether this is also true of women named Oliver have been inconclusive because
     women named Oliver do not reflect a visible spectrum of light rendering them invisible.
-  status: A
+  status: R
   submitted_on: 1217017467
 - id: 16280
   liar: Forrest (mistermoxy@gmail.com)

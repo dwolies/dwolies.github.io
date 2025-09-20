@@ -217,12 +217,6 @@ function annotateLie(thisLie, soundexToLieIndices, soundexToCounter, compact=fal
     }
 }
 
-function dateToLindex(lies, date) {
-    const N = lies.length
-    const daysSinceEpoch = Math.floor((date - new Date(0)) / 86400000);
-    return ((daysSinceEpoch * 2654435761) % 2**32) % (N + 1);  // hash it right up
-}
-
 function lbreak() {
     return `<img height="8" src="lbreak.gif" width="600" />`
 }
@@ -244,7 +238,7 @@ const markers = {
 }
 
 function makeGl(soundexToLieIndices, soundexToCounter) {
-
+ 
     for(let i in guests) {
         const bits = []
         const guest = guests[i]
@@ -280,35 +274,62 @@ function makeGl(soundexToLieIndices, soundexToCounter) {
     }
 }
 
+// we dont want the mapping to change when we change moderation of one lie
+// so we'll use a  skip list approach
+function lieForDate(lies, dateOffset) {
+
+    const d1 = new Date()
+    d1.setDate(d1.getDate() + dateOffset)
+    const daysSinceEpoch = Math.floor((d1 - new Date(0)) / 86400000);
+    
+    const startSearchIndex = ((daysSinceEpoch * 2654435761) % 2**32) % (lies.length + 1);  // hash it right up
+    let searchIndex = startSearchIndex
+
+
+    while(lies[searchIndex].status !== 'A') {
+        searchIndex += 1
+        if(searchIndex >= lies.length) {
+            searchIndex = 0
+        }    
+    }
+
+    //console.log("dateOffset:", dateOffset, " start:", startSearchIndex, " end:", searchIndex, " lie:", lies[searchIndex].lie.slice(0,20))
+    return lies[searchIndex]
+}
+
 function makeAwol(lies, soundexToLieIndices, soundexToCounter) {
     const bits = []
     for(let history=1; history < 7; history++) {
-        const currentDate = new Date()
-        currentDate.setDate(currentDate.getDate() - history)
-        const lie = lies[dateToLindex(lies, currentDate)]
+        //const currentDate = new Date()
+        //currentDate.setDate(currentDate.getDate() - history)
         bits.push(history > 1 ? `<p>${lbreak()}</p>` : '')
         bits.push(
             dateLabel('The lie of ', history),
             markers[history%2][0],
-            annotateLie(lie, soundexToLieIndices, soundexToCounter),
+            annotateLie(lieForDate(lies, -history), soundexToLieIndices, soundexToCounter),
             markers[history%2][1])
     }
     fs.writeFileSync(`${outputRoot}/awol.htm`, makeHeader('awol') + bits.join('') + footer)
 }
 
-
 function makeLotd(lies, soundexToLieIndices, soundexToCounter) {
-    const bits = []
-
-    const currentDate = new Date()
-    const lie = lies[dateToLindex(lies, currentDate)]
-    bits.push(
+    const bits = [ 
+        makeHeader('lotd'),
         dateLabel('The lie of today, ',0),
         lbreak(),
         vpad(),
-        annotateLie(lie, soundexToLieIndices, soundexToCounter))
+        annotateLie(lieForDate(lies, 0), soundexToLieIndices, soundexToCounter),
+        footer
+    ]
 
-    fs.writeFileSync(`${outputRoot}/lotd.htm`, makeHeader('lotd') + bits.join('') + footer)
+    fs.writeFileSync(`${outputRoot}/lotd.htm`, bits.join(''))
+
+
+    for(let offset=-7; offset < 21; offset++) {
+        const item = lieForDate(lies, offset)
+        console.log(offset, item.lie)
+    }
+   
 }
 
 function resolvePartial(name) {
@@ -339,7 +360,9 @@ function removeEverything() {
 }
 
 try {
-    const liesDocs = yaml.load(fs.readFileSync('./lie_db.yaml', 'utf8'));
+    const fullSet = yaml.load(fs.readFileSync('lie_db.yaml', 'utf8'))
+    const liesDocs = fullSet //.slice(0, 1000)
+
 
     const countByStatus = new Map()
     for (const lie of liesDocs) {
@@ -353,21 +376,13 @@ try {
         console.log(`${key} : ${countByStatus.get(key).length}`)
     }
 
-    const accepted = countByStatus.get('A');
-
-    console.log(accepted.length + ' accepted')
-
-    const thinned = accepted.slice(0, Math.min(232323, accepted.length))
-
-    console.log(thinned.length + ' thinned')
-
     for(let g of guests) {
         for(let l of g.lies) {
-            thinned.push({lie: l, liar: g.name, id: -1 })
+            liesDocs.push({lie: l, liar: g.name, id: -1 })
         }
     }
 
-    const soundexToLieIndices = constructIndex(thinned)
+    const soundexToLieIndices = constructIndex(liesDocs)
 
     // init the counters to random positions
     const soundexToCounter = new Map()
@@ -379,16 +394,20 @@ try {
 
     compressAndExportIndex(soundexToLieIndices, `${outputRoot}/index.br`)
 
-    for (let i = 0; i < thinned.length; i++) {
-        fs.writeFileSync(`${outputRoot}/${thinned[i].id}.htm`, makeHeader('?') + annotateLie(thinned[i], soundexToLieIndices, soundexToCounter) + footer)
+    let goodPages = 0
+    for (let i = 0; i < liesDocs.length; i++) {
+        if(liesDocs[i].status === 'A') {
+            fs.writeFileSync(`${outputRoot}/${liesDocs[i].id}.htm`, makeHeader('?') + annotateLie(liesDocs[i], soundexToLieIndices, soundexToCounter) + footer)
+            goodPages += 1
+        }
     }
-    console.log(thinned.length + ' pages written to ' + outputRoot)
+    console.log(goodPages + ' pages written to ' + outputRoot)
 
-    makeAwol(thinned, soundexToLieIndices, soundexToCounter)
+    makeAwol(liesDocs, soundexToLieIndices, soundexToCounter)
 
     makeGl(soundexToLieIndices, soundexToCounter)
 
-    makeLotd(thinned, soundexToLieIndices, soundexToCounter)
+    makeLotd(liesDocs, soundexToLieIndices, soundexToCounter)
 
     resolvePartial('dwol')
     resolvePartial('cl')
