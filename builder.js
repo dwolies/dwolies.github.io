@@ -139,6 +139,9 @@ function tokenizeAndSoundex(text) {
 function constructIndex(lies) {
    let lookup = new Map()
     for (let aLie of lies) {
+        if(aLie.status !== 'A') {
+            continue
+        }
         tokenizeAndSoundex(aLie.lie).forEach(token => {
             if (token.isWord) {
                 const currentList = lookup.get(token.soundex)
